@@ -58,6 +58,10 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Category</p>
                 </router-link>
+                <router-link :to="{ name: 'CategoryList' }" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Category</p>
+                </router-link>
               </li>
             </ul>
           </li>

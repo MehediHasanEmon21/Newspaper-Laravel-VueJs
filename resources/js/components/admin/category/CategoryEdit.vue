@@ -23,10 +23,10 @@
           <div class="col-md-6">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Category</h3>
+                <h3 class="card-title">Edit Category</h3>
               </div>
 
-              <form role="form" @submit.prevent="addCategory">
+              <form role="form" @submit.prevent="editCategory">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="category_name">Category Name</label>
@@ -34,7 +34,6 @@
                       type="text"
                       class="form-control"
                       id="category_name"
-                      placeholder="Enter Category Name"
                       v-model="form.name"
                     />
                     <small style="color: red" v-if="errors['name']">{{
@@ -45,7 +44,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
               </form>
             </div>
@@ -63,7 +62,7 @@
 
 <script>
 export default {
-  name: "CategoryAdd",
+  name: "CategoryEdit",
   data() {
     return {
       form: {
@@ -73,13 +72,21 @@ export default {
     };
   },
   methods: {
-    addCategory() {
+    category() {
       axios
-        .post("/admin/add-category", this.form)
+        .get("/admin/edit-category/" + this.$route.params.slug)
+        .then((result) => {
+          this.form = result.data.category;
+        })
+        .catch((err) => {});
+    },
+    editCategory() {
+      axios
+        .post("/admin/update-category", this.form)
         .then((result) => {
           Toast.fire({
             icon: "success",
-            title: "Category Add successfully",
+            title: "Category Update successfully",
           });
           this.$router.push({ name: "CategoryList" });
         })
@@ -88,8 +95,12 @@ export default {
         });
     },
   },
+  created() {
+    this.category();
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 </style>
+

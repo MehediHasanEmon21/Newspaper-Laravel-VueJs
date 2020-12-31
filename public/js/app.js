@@ -61530,6 +61530,45 @@ var admin = {
 
 /***/ }),
 
+/***/ "./resources/js/common/module/category.js":
+/*!************************************************!*\
+  !*** ./resources/js/common/module/category.js ***!
+  \************************************************/
+/*! exports provided: category */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "category", function() { return category; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var category = {
+  namespaced: true,
+  state: {
+    categoryList: {}
+  },
+  getters: {
+    categoryList: function categoryList(state) {
+      return state.categoryList;
+    }
+  },
+  actions: {
+    categoryList: function categoryList(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/all-category').then(function (result) {
+        context.commit('categoryList', result.data.categories);
+      })["catch"](function (err) {});
+    }
+  },
+  mutations: {
+    categoryList: function categoryList(state, payload) {
+      return state.categoryList = payload;
+    }
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/common/store.js":
 /*!**************************************!*\
   !*** ./resources/js/common/store.js ***!
@@ -61544,13 +61583,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _module_admin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./module/admin */ "./resources/js/common/module/admin.js");
+/* harmony import */ var _module_category__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/category */ "./resources/js/common/module/category.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
+
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
-    admin: _module_admin__WEBPACK_IMPORTED_MODULE_2__["admin"]
+    admin: _module_admin__WEBPACK_IMPORTED_MODULE_2__["admin"],
+    category: _module_category__WEBPACK_IMPORTED_MODULE_3__["category"]
   }
 });
 

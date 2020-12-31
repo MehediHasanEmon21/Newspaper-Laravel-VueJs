@@ -16,6 +16,7 @@
 Route::prefix('user')->group(base_path('routes/user.php'));
 Route::prefix('admin')->group(base_path('routes/admin.php'));
 
+
 Route::get('/', function () {
     return view('public.public_layout');
 });

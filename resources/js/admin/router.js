@@ -11,7 +11,10 @@ Vue.component('admin-master', require('../components/admin/AdminMaster.vue').def
 
 import AdminDashboard from '../components/admin/AdminDashboard'
 
+//category component
 import CategoryAdd from '../components/admin/category/CategoryAdd'
+import CategoryList from '../components/admin/category/CategoryList'
+import CategoryEdit from '../components/admin/category/CategoryEdit'
 
 import AdminLogin from '../components/admin/auth/AdminLogin'
 
@@ -34,7 +37,17 @@ const router = new VueRouter({
             path: '/admin/category-add',
             component: CategoryAdd,
             name: 'CategoryAdd'
-        }
+        },
+         {
+            path: '/admin/category-list',
+            component: CategoryList,
+            name: 'CategoryList'
+        },
+          {
+            path: '/admin/category-edit/:slug',
+            component: CategoryEdit,
+            name: 'CategoryEdit'
+        },
 
     ]
 })
