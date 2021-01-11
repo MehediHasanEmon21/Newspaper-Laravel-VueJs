@@ -8,6 +8,24 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import VueProgressBar from 'vue-progressbar'
+
+const VueProgressoptions = {
+  color: '#50d38a',
+  failedColor: '#874b4b',
+  thickness: '2px',
+  transition: {
+    speed: '0.1s',
+    opacity: '0.6s',
+    termination: 300
+  },
+  autoRevert: true,
+  location: 'top',
+  inverse: false
+}
+
+Vue.use(VueProgressBar, VueProgressoptions)
+
 import Swal from 'sweetalert2'
 
 const Toast = Swal.mixin({

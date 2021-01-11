@@ -22,13 +22,17 @@ class UserAuthController extends Controller
      */
     public function login(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required|string',
+        ]);
         $credentials = $request->only('email', 'password');
 
         if ($token = $this->guard()->attempt($credentials)) {
             return $this->respondWithToken($token);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json('error');
     }
 
     /**
@@ -73,10 +77,10 @@ class UserAuthController extends Controller
     protected function respondWithToken($token)
     {
         return response()->json([
-            'access_token' => $token,
+            'user_access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => $this->guard()->factory()->getTTL() * 60,
-            'auth_data' => auth()->user()
+            'user_data' => auth()->user()
         ]);
     }
 
@@ -88,5 +92,11 @@ class UserAuthController extends Controller
     public function guard()
     {
         return Auth::guard();
+    }
+
+    public function get_user()
+    {
+        $user = auth()->user();
+        return response()->json(['user' => $user]);
     }
 }

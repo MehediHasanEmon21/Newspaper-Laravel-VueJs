@@ -53,7 +53,7 @@
             style="height: 30px; width: 32px; margin-right: 6px; opacity: 0.8"
             alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3"
-          />{{ admin.name }}
+          />{{ parsing_admin.name }}
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">Account Setting</span>
@@ -63,13 +63,13 @@
           </a>
 
           <div class="dropdown-divider"></div>
-          <a
-            @click.prevent="adminLogout()"
+          <router-link
+            :to="{ name: 'AdminLogout' }"
             style="cursor: pointer"
             class="dropdown-item"
           >
             <i class="fas fa-lock mr-2"></i> Logout
-          </a>
+          </router-link>
         </div>
       </li>
     </ul>
@@ -82,33 +82,14 @@ export default {
   data() {
     return {};
   },
-  methods: {
-    adminLogout() {
-      axios
-        .post(
-          "/api/admin/logout?token=" +
-            localStorage.getItem("admin_access_token")
-        )
-        .then((result) => {
-          localStorage.removeItem("admin_access_token");
-          Toast.fire({
-            icon: "success",
-            title: "Logged Out successfully",
-          });
-          this.$router.push({ name: "AdminLogin" });
-        })
-        .catch((err) => {});
-    },
-    getAuthAdmin() {
-      this.$store.dispatch("admin/getAdmin");
-    },
-  },
-  created() {
-    this.getAuthAdmin();
-  },
+  methods: {},
+
   computed: {
     admin() {
-      return this.$store.getters["admin/getAdmin"];
+      return localStorage.getItem("admin_data");
+    },
+    parsing_admin() {
+      return JSON.parse(this.admin);
     },
   },
 };

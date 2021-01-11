@@ -1,7 +1,6 @@
 <template>
-    <span id="home">
-
-            <div class="main-menu-container"></div>
+  <span id="home">
+    <div class="main-menu-container"></div>
     <div class="container">
       <div class="bck-news">
         <div class="col-md-2">
@@ -21,9 +20,9 @@
           </div>
         </div>
         <div class="add">
-          <a href="#"
+          <a href="javascript:void()" target="_blank"
             ><img
-              src="/frontend/assets/images/Heal_728x90.jpg"
+              :src="`/uploads/ads/${home.top_ad.image}`"
               alt="image"
               class="img-responsive"
           /></a>
@@ -59,60 +58,25 @@
               </ol>
               <!-- Wrapper for slides -->
               <div class="carousel-inner">
-                <div class="item active">
+                <div
+                  class="item"
+                  :class="index == 0 ? 'active' : ''"
+                  v-for="(slider, index) in home.slider_ads"
+                  :key="slider.id"
+                >
                   <a href=""
-                    ><img src="/frontend/assets/images/1.jpg" alt="First slide"
-                  /></a>
-                  <!-- Static Header -->
-                  <div class="header-text hidden-xs">
-                    <div class="col-md-12 text-center">
-                      <a href="#">
-                        <h2>Aenean feugiat in ante et</h2>
-                      </a>
-                      <br />
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      </p>
-                      <br />
-                    </div>
-                  </div>
-                  <!-- /header-text -->
-                </div>
-                <div class="item">
-                  <a href="#"
                     ><img
-                      src="/frontend/assets/images/2.jpg"
-                      alt="Second slide"
+                      :src="`/uploads/ads/${slider.image}`"
+                      alt="First slide"
                   /></a>
                   <!-- Static Header -->
                   <div class="header-text hidden-xs">
                     <div class="col-md-12 text-center">
                       <a href="#">
-                        <h2>Aenean feugiat in ante et blandit. Vestibulum</h2>
+                        <h2>{{ slider.title }}</h2>
                       </a>
                       <br />
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      </p>
-                      <br />
-                    </div>
-                  </div>
-                  <!-- /header-text -->
-                </div>
-                <div class="item">
-                  <a href="#"
-                    ><img src="/frontend/assets/images/3.jpg" alt="Third slide"
-                  /></a>
-                  <!-- Static Header -->
-                  <div class="header-text hidden-xs">
-                    <div class="col-md-12 text-center">
-                      <a href="#">
-                        <h2>Curabitur tincidunt porta lorem vitae</h2>
-                      </a>
-                      <br />
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      </p>
+                      <p v-html="slider.description"></p>
                       <br />
                     </div>
                   </div>
@@ -142,48 +106,19 @@
               <!-- Swiper -->
               <div class="swiper-container">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide">
+                  <div
+                    class="swiper-slide"
+                    v-for="post in home.random_posts"
+                    :key="post.id"
+                  >
                     <a href="#"
                       ><img
-                        src="/frontend/assets/images/en2.jpg"
+                        :src="`/uploads/post/${post.image}`"
                         alt="sponsor"
                         class="img-responsive"
                     /></a>
                     <a href="#">
-                      <h2>entertaiment 1</h2>
-                    </a>
-                  </div>
-                  <div class="swiper-slide">
-                    <a href="#"
-                      ><img
-                        src="/frontend/assets/images/b13.jpg"
-                        alt="sponsor"
-                        class="img-responsive"
-                    /></a>
-                    <a href="#">
-                      <h2>entertaiment 2</h2>
-                    </a>
-                  </div>
-                  <div class="swiper-slide">
-                    <a href="#"
-                      ><img
-                        src="/frontend/assets/images/en2.jpg"
-                        alt="sponsor"
-                        class="img-responsive"
-                    /></a>
-                    <a href="#">
-                      <h2>entertaiment 3</h2>
-                    </a>
-                  </div>
-                  <div class="swiper-slide">
-                    <a href="#"
-                      ><img
-                        src="/frontend/assets/images/en1 .jpg"
-                        alt="sponsor"
-                        class="img-responsive"
-                    /></a>
-                    <a href="#">
-                      <h2>entertaiment 4</h2>
+                      <h2>entertaiment</h2>
                     </a>
                   </div>
                 </div>
@@ -205,166 +140,32 @@
 
     <div class="container">
       <div class="row row-offcanvas row-offcanvas-right">
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-sm-12">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" v-for="ln in home.latest_posts" :key="ln.id">
               <div class="en-item">
-                <a class="en-img" href="#"
+                <router-link
+                  class="en-img"
+                  :to="{ name: 'Details', params: { slug: ln.slug } }"
                   ><img
-                    src="/frontend/assets/images/100.jpg"
+                    :src="`/uploads/post/${ln.image}`"
                     alt="en-img1"
                     class="img-responsive"
                   />
-                  <h5>FASHION</h5>
-                </a>
-                <a href="#">
-                  <h3>
-                    Lorem ipsum dolor sit amet conse ctetur adipiscing elit
-                  </h3>
-                </a>
-                <p>
-                  Nulla quis lorem neque, mattis venenatis lectus. In interdum
-                  ullamcorper dolor ...interdum
-                </p>
+                  <h5 v-if="ln.category.name">{{ ln.category.name }}</h5>
+                </router-link>
+                <router-link
+                  :to="{ name: 'Details', params: { slug: ln.slug } }"
+                >
+                  <h3>{{ ln.title.slice(0, 30) }}...</h3>
+                </router-link>
+                <p v-html="ln.desc"></p>
                 <h6>
                   Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                  <a href="#">Admin</a><span> | </span
-                  ><i class="fa fa-clock-o" aria-hidden="true"></i> jun 01, 2017
-                </h6>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="en-item">
-                <a class="en-img" href="#"
-                  ><img
-                    src="/frontend/assets/images/11.jpg"
-                    alt="en-img1"
-                    class="img-responsive"
-                  />
-                  <h5>City</h5>
-                </a>
-                <a href="#">
-                  <h3>
-                    Lorem ipsum dolor sit amet conse ctetur adipiscing elit
-                  </h3>
-                </a>
-                <p>
-                  Nulla quis lorem neque, mattis venenatis lectus. In interdum
-                  ullamcorper dolor ...interdum
-                </p>
-                <h6>
-                  Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                  <a href="#">Admin</a><span> | </span
-                  ><i class="fa fa-clock-o" aria-hidden="true"></i> jun 01, 2017
-                </h6>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="en-item">
-                <a class="en-img" href="#"
-                  ><img
-                    src="/frontend/assets/images/download.jpg"
-                    alt="en-img1"
-                    class="img-responsive"
-                  />
-                  <h5>Editorial</h5>
-                </a>
-                <a href="#">
-                  <h3>
-                    Lorem ipsum dolor sit amet conse ctetur adipiscing elit
-                  </h3>
-                </a>
-                <p>
-                  Nulla quis lorem neque, mattis venenatis lectus. In interdum
-                  ullamcorper dolor ...interdum
-                </p>
-                <h6>
-                  Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                  <a href="#">Admin</a><span> | </span
-                  ><i class="fa fa-clock-o" aria-hidden="true"></i> jun 01, 2017
-                </h6>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="en-item">
-                <a class="en-img" href="#"
-                  ><img
-                    src="/frontend/assets/images/13.jpg"
-                    alt="en-img1"
-                    class="img-responsive"
-                  />
-                  <h5>Crime</h5>
-                </a>
-                <a href="#">
-                  <h3>
-                    Lorem ipsum dolor sit amet conse ctetur adipiscing elit
-                  </h3>
-                </a>
-                <p>
-                  Nulla quis lorem neque, mattis venenatis lectus. In interdum
-                  ullamcorper dolor ...interdum
-                </p>
-                <h6>
-                  Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                  <a href="#">Admin</a><span> | </span
-                  ><i class="fa fa-clock-o" aria-hidden="true"></i> jun 01, 2017
-                </h6>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="en-item">
-                <a class="en-img" href="#"
-                  ><img
-                    src="/frontend/assets/images/14.jpg"
-                    alt="en-img1"
-                    class="img-responsive"
-                  />
-                  <h5>Arts & Entertaiment</h5>
-                </a>
-                <a href="#">
-                  <h3>
-                    Lorem ipsum dolor sit amet conse ctetur adipiscing elit
-                  </h3>
-                </a>
-                <p>
-                  Nulla quis lorem neque, mattis venenatis lectus. In interdum
-                  ullamcorper dolor ...interdum
-                </p>
-                <h6>
-                  Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                  <a href="#">Admin</a><span> | </span
-                  ><i class="fa fa-clock-o" aria-hidden="true"></i> jun 01, 2017
-                </h6>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="en-item">
-                <a class="en-img" href="#"
-                  ><img
-                    src="/frontend/assets/images/b0.jpg"
-                    alt="en-img1"
-                    class="img-responsive"
-                  />
-                  <h5>Businesas</h5>
-                </a>
-                <a href="#">
-                  <h3>
-                    Lorem ipsum dolor sit amet conse ctetur adipiscing elit
-                  </h3>
-                </a>
-                <p>
-                  Nulla quis lorem neque, mattis venenatis lectus. In interdum
-                  ullamcorper dolor ...interdum
-                </p>
-                <h6>
-                  Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                  <a href="#">Admin</a><span> | </span
-                  ><i class="fa fa-clock-o" aria-hidden="true"></i> jun 01, 2017
+                  <a href="#" v-if="ln.admin.name">{{ ln.admin.name }}</a
+                  ><span> | </span
+                  ><i class="fa fa-clock-o" aria-hidden="true"></i>
+                  {{ ln.date_fm }}
                 </h6>
               </div>
             </div>
@@ -373,59 +174,7 @@
         </div>
         <!--/.col-xs-12.col-sm-9-->
 
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-          <div class="col-md-14">
-            <div class="en-item">
-              <a class="en-img" href="#"
-                ><img
-                  src="/frontend/assets/images/16.jpg"
-                  alt="en-img1"
-                  class="img-responsive"
-                />
-                <h5>Sports</h5>
-              </a>
-              <a href="#">
-                <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit</h3>
-              </a>
-              <p>
-                Nulla quis lorem neque, mattis venenatis lectus. In interdum
-                ullamcorper dolor ...interdum
-              </p>
-              <h6>
-                Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                <a href="#">Admin</a><span> | </span
-                ><i class="fa fa-clock-o" aria-hidden="true"></i> jun 01, 2017
-              </h6>
-            </div>
-          </div>
-        </div>
         <!--/.sidebar-offcanvas-->
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-          <div class="col-md-14">
-            <div class="en-item">
-              <a class="en-img" href="#"
-                ><img
-                  src="/frontend/assets/images/t7.jpg"
-                  alt="en-img1"
-                  class="img-responsive"
-                />
-                <h5>Technology</h5>
-              </a>
-              <a href="#">
-                <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit</h3>
-              </a>
-              <p>
-                Nulla quis lorem neque, mattis venenatis lectus. In interdum
-                ullamcorper dolor ...interdum
-              </p>
-              <h6>
-                Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                <a href="#">Admin</a><span> | </span
-                ><i class="fa fa-clock-o" aria-hidden="true"></i> jun 01, 2017
-              </h6>
-            </div>
-          </div>
-        </div>
       </div>
       <!--/row-->
 
@@ -435,9 +184,9 @@
     <div class="container">
       <div class="col-md-12">
         <div class="add2">
-          <a href="#"
+          <a href="javascript:void()"
             ><img
-              src="/frontend/assets/images/add2.png"
+              :src="`/uploads/ads/${home.middle_ad.image}`"
               alt="image"
               class="img-responsive"
           /></a>
@@ -451,36 +200,39 @@
           <div class="row">
             <div class="section-padding">
               <div class="card-header-orange">
-                <h1 class="card-heading">Entertenmaint</h1>
+                <h1 class="card-heading">
+                  {{ home.entertainment_posts[0].category.name }}
+                </h1>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div
+                  class="col-md-6"
+                  v-for="ep in home.entertainment_posts"
+                  :key="ep.id"
+                >
                   <div class="news-element">
                     <div class="n-box">
                       <div class="videos">
                         <a href="#"
                           ><img
-                            src="/frontend/assets/images/gl3.jpg"
+                            :src="`/uploads/post/${ep.image}`"
                             alt="image"
                             class="img-responsive"
                         /></a>
                       </div>
                       <div class="n-txt">
-                        <h3><a href="#">One Tree Thousand Hope123</a></h3>
+                        <h3>
+                          <a href="#">{{ ep.title }}...</a>
+                        </h3>
                         <h5>
-                          <i class="fa fa-clock-o" aria-hidden="true"></i> jun
-                          01, 2017 <span> | </span
+                          <i class="fa fa-clock-o" aria-hidden="true"></i>
+                          {{ ep.date_fm }} <span> | </span
                           ><i class="fa fa-user" aria-hidden="true"></i>
-                          <a href="#">Admin</a>
+                          <a href="#" v-if="ep.admin.name">{{
+                            ep.admin.name
+                          }}</a>
                         </h5>
-                        <p>
-                          Conveniently exploit performance based systems without
-                          B2B expertise. Seamlessly productivate highly
-                          efficient paradigms whereas intermandated “outside the
-                          box” thinking. Uniquely…There are many variations of
-                          passages of LoreIpsum lable, but the majority
-                          suffered.
-                        </p>
+                        <p v-html="ep.desc"></p>
                         <a href="#"
                           ><button class="custom-btn">read more</button></a
                         >
@@ -489,44 +241,7 @@
                   </div>
                 </div>
                 <!--/span-->
-                <div class="col-md-6">
-                  <div class="news-element">
-                    <div class="n-box">
-                      <div class="videos">
-                        <a href="#"
-                          ><img
-                            src="/frontend/assets/images/21.jpg"
-                            alt="image"
-                            class="img-responsive"
-                        /></a>
-                      </div>
-                      <div class="n-txt">
-                        <h3>
-                          <a href="#"
-                            >Dramatically Maintain Diverse Processes Via</a
-                          >
-                        </h3>
-                        <h5>
-                          <i class="fa fa-clock-o" aria-hidden="true"></i> jun
-                          01, 2017 <span> | </span
-                          ><i class="fa fa-user" aria-hidden="true"></i>
-                          <a href="#">Admin</a>
-                        </h5>
-                        <p>
-                          Conveniently exploit performance based systems without
-                          B2B expertise. Seamlessly productivate highly
-                          efficient paradigms whereas intermandated “outside the
-                          box” thinking. Uniquely…There are many variations of
-                          passages of LoreIpsum lable, but the majority
-                          suffered.
-                        </p>
-                        <a href="#"
-                          ><button class="custom-btn">read more</button></a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
                 <!--/span-->
               </div>
               <!--/row-->
@@ -539,186 +254,43 @@
                 <div class="row row-offcanvas row-offcanvas-right">
                   <div class="col-xs-12 col-sm-9">
                     <div class="category">
-                      <h1 class="category">Technology</h1>
+                      <h1 class="category">
+                        {{ home.sport_posts[0].category.name }}
+                      </h1>
                     </div>
 
                     <div class="row">
-                      <div class="col-md-4">
+                      <div
+                        class="col-md-4"
+                        v-for="sp in home.sport_posts"
+                        :key="sp.id"
+                      >
                         <div class="en-item">
                           <a class="en-img" href="#"
                             ><img
-                              src="/frontend/assets/images/t1.jpg"
+                              :src="`/uploads/post/${sp.image}`"
                               alt="en-img1"
                               class="img-responsive"
-                          /></a>
-                          <a href="#">
-                            <h3>
-                              Lorem ipsum dolor sit amet conse ctetur adipiscing
-                              elit
-                            </h3>
+                            />
+                            <h5 v-if="sp.category.name">
+                              {{ sp.category.name }}
+                            </h5>
                           </a>
-                          <p>
-                            Nulla quis lorem neque, mattis venenatis lectus. In
-                            interdum ullamcorper dolor ...interdum
-                          </p>
+                          <a href="#">
+                            <h3>{{ sp.title.slice(0, 30) }}...</h3>
+                          </a>
+                          <p v-html="sp.desc"></p>
                           <h6>
                             Posted by<i
                               class="fa fa-user"
                               aria-hidden="true"
                             ></i>
-                            <a href="#">Admin</a><span> | </span
+                            <a href="#" v-if="sp.admin.name">{{
+                              sp.admin.name
+                            }}</a
+                            ><span> | </span
                             ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
-                          </h6>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4">
-                        <div class="en-item">
-                          <a class="en-img" href="#"
-                            ><img
-                              src="/frontend/assets/images/t12.jpg"
-                              alt="en-img1"
-                              class="img-responsive"
-                          /></a>
-                          <a href="#">
-                            <h3>
-                              Lorem ipsum dolor sit amet conse ctetur adipiscing
-                              elit
-                            </h3>
-                          </a>
-                          <p>
-                            Nulla quis lorem neque, mattis venenatis lectus. In
-                            interdum ullamcorper dolor ...interdum
-                          </p>
-                          <h6>
-                            Posted by<i
-                              class="fa fa-user"
-                              aria-hidden="true"
-                            ></i>
-                            <a href="#">Admin</a><span> | </span
-                            ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
-                          </h6>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4">
-                        <div class="en-item">
-                          <a class="en-img" href="#"
-                            ><img
-                              src="/frontend/assets/images/t4.jpg"
-                              alt="en-img1"
-                              class="img-responsive"
-                          /></a>
-                          <a href="#">
-                            <h3>
-                              Lorem ipsum dolor sit amet conse ctetur adipiscing
-                              elit
-                            </h3>
-                          </a>
-                          <p>
-                            Nulla quis lorem neque, mattis venenatis lectus. In
-                            interdum ullamcorper dolor ...interdum
-                          </p>
-                          <h6>
-                            Posted by<i
-                              class="fa fa-user"
-                              aria-hidden="true"
-                            ></i>
-                            <a href="#">Admin</a><span> | </span
-                            ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
-                          </h6>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4">
-                        <div class="en-item">
-                          <a class="en-img" href="#"
-                            ><img
-                              src="/frontend/assets/images/t5.jpg"
-                              alt="en-img1"
-                              class="img-responsive"
-                          /></a>
-                          <a href="#">
-                            <h3>
-                              Lorem ipsum dolor sit amet conse ctetur adipiscing
-                              elit
-                            </h3>
-                          </a>
-                          <p>
-                            Nulla quis lorem neque, mattis venenatis lectus. In
-                            interdum ullamcorper dolor ...interdum
-                          </p>
-                          <h6>
-                            Posted by<i
-                              class="fa fa-user"
-                              aria-hidden="true"
-                            ></i>
-                            <a href="#">Admin</a><span> | </span
-                            ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
-                          </h6>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4">
-                        <div class="en-item">
-                          <a class="en-img" href="#"
-                            ><img
-                              src="/frontend/assets/images/t6.jpg"
-                              alt="en-img1"
-                              class="img-responsive"
-                          /></a>
-                          <a href="#">
-                            <h3>
-                              Lorem ipsum dolor sit amet conse ctetur adipiscing
-                              elit
-                            </h3>
-                          </a>
-                          <p>
-                            Nulla quis lorem neque, mattis venenatis lectus. In
-                            interdum ullamcorper dolor ...interdum
-                          </p>
-                          <h6>
-                            Posted by<i
-                              class="fa fa-user"
-                              aria-hidden="true"
-                            ></i>
-                            <a href="#">Admin</a><span> | </span
-                            ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
-                          </h6>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4">
-                        <div class="en-item">
-                          <a class="en-img" href="#"
-                            ><img
-                              src="/frontend/assets/images/t8.jpg"
-                              alt="en-img1"
-                              class="img-responsive"
-                          /></a>
-                          <a href="#">
-                            <h3>
-                              Lorem ipsum dolor sit amet conse ctetur adipiscing
-                              elit
-                            </h3>
-                          </a>
-                          <p>
-                            Nulla quis lorem neque, mattis venenatis lectus. In
-                            interdum ullamcorper dolor ...interdum
-                          </p>
-                          <h6>
-                            Posted by<i
-                              class="fa fa-user"
-                              aria-hidden="true"
-                            ></i>
-                            <a href="#">Admin</a><span> | </span
-                            ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
+                            {{ sp.date_fm }}
                           </h6>
                         </div>
                       </div>
@@ -733,112 +305,29 @@
                         <h3>Pupular Posts</h3>
                       </div>
 
-                      <div class="fp">
+                      <div
+                        class="fp"
+                        v-for="pp in home.popular_posts"
+                        :key="pp.id"
+                      >
                         <div class="FP">
                           <div class="fp-img">
                             <a href="#"
                               ><img
-                                src="/frontend/assets/images/t11.jpg"
+                                v-if="pp.post.image"
+                                :src="`/uploads/post/${pp.post.image}`"
                                 alt="image"
                             /></a>
                           </div>
                           <div class="fp-txt">
                             <h4 class="rp-title">
-                              <a class="" href="#"
-                                >Pandemic Objectively Evolve Outsourcing</a
+                              <a class="" href="#" v-if="pp.post.title"
+                                >{{ pp.post.title.slice(0, 20) }}...</a
                               >
                             </h4>
                             <p>
                               <i class="fa fa-clock-o" aria-hidden="true"></i>
-                              june 01, 2017
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="fp">
-                        <div class="FP">
-                          <div class="fp-img">
-                            <a href="#"
-                              ><img
-                                src="/frontend/assets/images/t13.jpg"
-                                alt="image"
-                            /></a>
-                          </div>
-                          <div class="fp-txt">
-                            <h4 class="rp-title">
-                              <a href="#"
-                                >Pandemic Objectively Evolve Outsourcing</a
-                              >
-                            </h4>
-                            <p>
-                              <i class="fa fa-clock-o" aria-hidden="true"></i>
-                              june 01, 2017
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="fp">
-                        <div class="FP">
-                          <div class="fp-img">
-                            <a href="#"
-                              ><img
-                                src="/frontend/assets/images/t14.jpg"
-                                alt="image"
-                            /></a>
-                          </div>
-                          <div class="fp-txt">
-                            <h4 class="rp-title">
-                              <a href="#"
-                                >Pandemic Objectively Evolve Outsourcing</a
-                              >
-                            </h4>
-                            <p>
-                              <i class="fa fa-clock-o" aria-hidden="true"></i>
-                              june 01, 2017
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="fp">
-                        <div class="FP">
-                          <div class="fp-img">
-                            <a href="#"
-                              ><img
-                                src="/frontend/assets/images/t15.jpg"
-                                alt="image"
-                            /></a>
-                          </div>
-                          <div class="fp-txt">
-                            <h4 class="rp-title">
-                              <a href="#"
-                                >Pandemic Objectively Evolve Outsourcing</a
-                              >
-                            </h4>
-                            <p>
-                              <i class="fa fa-clock-o" aria-hidden="true"></i>
-                              june 01, 2017
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="fp">
-                        <div class="FP">
-                          <div class="fp-img">
-                            <a href="#"
-                              ><img
-                                src="/frontend/assets/images/t16.jpg"
-                                alt="image"
-                            /></a>
-                          </div>
-                          <div class="fp-txt">
-                            <h4 class="rp-title">
-                              <a href="#"
-                                >1234Pandemic Objectively Evolve Outsourcing</a
-                              >
-                            </h4>
-                            <p>
-                              <i class="fa fa-clock-o" aria-hidden="true"></i>
-                              june 01, 2017
+                              {{ pp.date_fm }}
                             </p>
                           </div>
                         </div>
@@ -871,214 +360,15 @@
               <div class="container">
                 <div class="col-md-12">
                   <div class="add2">
-                    <a href="#"
+                    <a href="javascript:void()"
                       ><img
-                        src="/frontend/assets/images/add1.jpg"
+                        :src="`/uploads/ads/${home.center_ad.image}`"
                         alt="image"
                         class="img-responsive"
                     /></a>
                   </div>
                 </div>
               </div>
-
-              <section id="mid-nws">
-                <div class="section-padding">
-                  <div class="container">
-                    <div class="row">
-                      <div class="p-carousel">
-                        <h1>POST CAROUSEL</h1>
-                        <div class="s-border">
-                          <div class="owl-carousel owl-theme">
-                            <div class="item">
-                              <a href="#">
-                                <h4>
-                                  Nulla quis lorem neque, mattis compatibile
-                                  with previous
-                                </h4>
-                              </a>
-                              <img
-                                src="/frontend/assets/images/sps2.jpg"
-                                alt="img1"
-                                class="img-responsive"
-                              />
-                              <p>
-                                Owl Carousel 2.x.x is not compatibile with
-                                previous version 1.x.x.was re-written from
-                                scratch and I’m very proud with all the new
-                                features.
-                              </p>
-                              <p>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                june 01, 2017
-                              </p>
-                            </div>
-                            <div class="item">
-                              <a href="#">
-                                <h4>
-                                  Nulla quis lorem neque, mattis compatibile
-                                  with previous
-                                </h4>
-                              </a>
-                              <img
-                                src="/frontend/assets/images/sps1.jpg"
-                                alt="img1"
-                                class="img-responsive"
-                              />
-                              <p>
-                                Owl Carousel 2.x.x is not compatibile with
-                                previous version 1.x.x. re-written from scratch
-                                and I’m very proud with all the new features.
-                              </p>
-                              <p>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                june 01, 2017
-                              </p>
-                            </div>
-                            <div class="item">
-                              <a href="#">
-                                <h4>
-                                  Nulla quis lorem neque, mattis compatibile
-                                  with previous
-                                </h4>
-                              </a>
-                              <img
-                                src="/frontend/assets/images/th (1).jpg"
-                                alt="img1"
-                                class="img-responsive"
-                              />
-                              <p>
-                                Owl Carousel 2.x.x is not compatibileut the core
-                                code was re-written from scratch and I’m very
-                                proud with all the new features.
-                              </p>
-                              <p>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                june 01, 2017
-                              </p>
-                            </div>
-                            <div class="item">
-                              <a href="#">
-                                <h4>
-                                  Nulla quis lorem neque, mattis compatibile
-                                  with previous
-                                </h4>
-                              </a>
-                              <img
-                                src="/frontend/assets/images/16.jpg"
-                                alt="b6.jpg"
-                                class="img-responsive"
-                              />
-                              <p>
-                                Owl Carousel 2.x.x is not compatibile with
-                                previous but the core code was re-written from
-                                scratch and I’m very proud with all the new
-                                features.
-                              </p>
-                              <p>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                june 01, 2017
-                              </p>
-                            </div>
-                            <div class="item">
-                              <a href="#">
-                                <h4>
-                                  Nulla quis lorem neque, mattis compatibile
-                                  with previous
-                                </h4>
-                              </a>
-                              <img
-                                src="/frontend/assets/images/b3.jpg"
-                                alt="img1"
-                                class="img-responsive"
-                              />
-                              <p>
-                                Owl Carousel 2.x.x is not compatibile with
-                                previous version 1.x.x.code was re-written from
-                                scratch and I’m very proud with all the new
-                                features.
-                              </p>
-                              <p>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                june 01, 2017
-                              </p>
-                            </div>
-                            <div class="item">
-                              <a href="#">
-                                <h4>
-                                  Nulla quis lorem neque, mattis compatibile
-                                  with previous
-                                </h4>
-                              </a>
-                              <img
-                                src="/frontend/assets/images/b10.jpg"
-                                alt="img1"
-                                class="img-responsive"
-                              />
-                              <p>
-                                Owl Carousel 2.x.x is not compatibile with
-                                previous version 1.x.x. e was re-written from
-                                scratch and I’m very proud with all the new
-                                features.
-                              </p>
-                              <p>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                june 01, 2017
-                              </p>
-                            </div>
-                            <div class="item">
-                              <a href="#">
-                                <h4>
-                                  Nulla quis lorem neque, mattis compatibile
-                                  with previous
-                                </h4>
-                              </a>
-                              <img
-                                src="/frontend/assets/images/t11.jpg"
-                                alt="img1"
-                                class="img-responsive"
-                              />
-                              <p>
-                                Owl Carousel 2.x.x is not compatibile with
-                                previous version 1.x.x. was re-written from
-                                scratch and I’m very proud with all the new
-                                features.
-                              </p>
-                              <p>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                june 01, 2017
-                              </p>
-                            </div>
-                            <div class="item">
-                              <a href="#">
-                                <h4>
-                                  Nulla quis lorem neque, mattis compatibile
-                                  with previous
-                                </h4>
-                              </a>
-                              <img
-                                src="/frontend/assets/images/tv5.jpg"
-                                alt="img1"
-                                class="img-responsive"
-                              />
-                              <p>
-                                Owl Carousel 2.x.x is not compatibile with
-                                previous version 1.x.x. s re-written from
-                                scratch and I’m very proud with all the new
-                                features.
-                              </p>
-                              <p>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                june 01, 2017
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!--/.container-->
-                  </div>
-                </div>
-              </section>
 
               <div class="container">
                 <div class="col-md-12">
@@ -1093,279 +383,6 @@
                 </div>
               </div>
 
-              <section id="mid-nws-btm">
-                <div class="section-padding">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="m-a-news">
-                          <a href="#">
-                            <h3 class="hading">
-                              Globally Pontificate Highly Efficient Processes
-                            </h3>
-                          </a>
-                          <a href="#"
-                            ><img
-                              src="/frontend/assets/images/mdn.jpg"
-                              alt="imag"
-                              class="img-responsive"
-                          /></a>
-                          <p>
-                            Globally iterate functional schemas for highly
-                            efficient action items. Credibly incentivize
-                            goal-oriented platforms without 24/365 growth
-                            strategies. Rapidiously foster iterate functional
-                            schemas for highly efficient action items.
-                            next-generation…
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="mid-bb-news">
-                          <div class="m-b-news">
-                            <a href="#"
-                              ><i
-                                class="fa fa-angle-double-right"
-                                aria-hidden="true"
-                              ></i>
-                              <h4 class="b-mid">
-                                Globally Pontificate Highly Efficient Processes
-                                Globally iterate functional
-                              </h4>
-                            </a>
-                          </div>
-                          <div class="m-b-news">
-                            <a href="#"
-                              ><i
-                                class="fa fa-angle-double-right"
-                                aria-hidden="true"
-                              ></i>
-                              <h4 class="b-mid">
-                                Globally Pontificate Highly Efficient Processes
-                                Globally iterate functional
-                              </h4>
-                            </a>
-                          </div>
-                          <div class="m-b-news">
-                            <a href="#"
-                              ><i
-                                class="fa fa-angle-double-right"
-                                aria-hidden="true"
-                              ></i>
-                              <h4 class="b-mid">
-                                Globally Pontificate Highly Efficient Processes
-                                Globally iterate functional
-                              </h4>
-                            </a>
-                          </div>
-                          <div class="m-b-news">
-                            <a href="#"
-                              ><i
-                                class="fa fa-angle-double-right"
-                                aria-hidden="true"
-                              ></i>
-                              <h4 class="b-mid">
-                                Globally Pontificate Highly Efficient Processes
-                                Globally iterate functional
-                              </h4>
-                            </a>
-                          </div>
-                          <div class="m-b-news">
-                            <a href="#"
-                              ><i
-                                class="fa fa-angle-double-right"
-                                aria-hidden="true"
-                              ></i>
-                              <h4 class="b-mid">
-                                Globally Pontificate Highly Efficient Processes
-                                Globally iterate functional
-                              </h4>
-                            </a>
-                          </div>
-                          <div class="m-b-news">
-                            <a href="#"
-                              ><i
-                                class="fa fa-angle-double-right"
-                                aria-hidden="true"
-                              ></i>
-                              <h4 class="b-mid">
-                                Globally Pontificate Highly Efficient Processes
-                                Globally iterate functional
-                              </h4>
-                            </a>
-                          </div>
-                          <div class="m-b-news">
-                            <a href="#"
-                              ><i
-                                class="fa fa-angle-double-right"
-                                aria-hidden="true"
-                              ></i>
-                              <h4 class="b-mid">
-                                Globally Pontificate Highly Efficient Processes
-                                Globally iterate functional
-                              </h4>
-                            </a>
-                          </div>
-                          <div class="m-b-news">
-                            <a href="#"
-                              ><i
-                                class="fa fa-angle-double-right"
-                                aria-hidden="true"
-                              ></i>
-                              <h4 class="b-mid">
-                                Globally Pontificate Highly Efficient Processes
-                                Globally iterate functional
-                              </h4>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="m-c-news">
-                          <div class="right-side">
-                            <div class="new-title">
-                              <h3>last news</h3>
-                            </div>
-
-                            <div class="fp">
-                              <div class="FP">
-                                <div class="fp-img">
-                                  <a href="#"
-                                    ><img
-                                      src="/frontend/assets/images/16.jpg"
-                                      alt="image"
-                                  /></a>
-                                </div>
-                                <div class="fp-txt">
-                                  <h4 class="rp-title">
-                                    <a class="" href="#"
-                                      >Pandemic Objectively Evolve
-                                      Outsourcing</a
-                                    >
-                                  </h4>
-                                  <p>
-                                    <i
-                                      class="fa fa-clock-o"
-                                      aria-hidden="true"
-                                    ></i>
-                                    june 01, 2017
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="fp">
-                              <div class="FP">
-                                <div class="fp-img">
-                                  <a href="#"
-                                    ><img
-                                      src="/frontend/assets/images/th (2).jpg"
-                                      alt="image"
-                                  /></a>
-                                </div>
-                                <div class="fp-txt">
-                                  <h4 class="rp-title">
-                                    <a href="#"
-                                      >Pandemic Objectively Evolve
-                                      Outsourcing</a
-                                    >
-                                  </h4>
-                                  <p>
-                                    <i
-                                      class="fa fa-clock-o"
-                                      aria-hidden="true"
-                                    ></i>
-                                    june 01, 2017
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="fp">
-                              <div class="FP">
-                                <div class="fp-img">
-                                  <a href="#"
-                                    ><img
-                                      src="/frontend/assets/images/17.jpg"
-                                      alt="image"
-                                  /></a>
-                                </div>
-                                <div class="fp-txt">
-                                  <h4 class="rp-title">
-                                    <a href="#"
-                                      >Pandemic Objectively Evolve
-                                      Outsourcing</a
-                                    >
-                                  </h4>
-                                  <p>
-                                    <i
-                                      class="fa fa-clock-o"
-                                      aria-hidden="true"
-                                    ></i>
-                                    june 01, 2017
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="fp">
-                              <div class="FP">
-                                <div class="fp-img">
-                                  <a href="#"
-                                    ><img
-                                      src="/frontend/assets/images/t16.jpg"
-                                      alt="image"
-                                  /></a>
-                                </div>
-                                <div class="fp-txt">
-                                  <h4 class="rp-title">
-                                    <a href="#"
-                                      >Pandemic Objectively Evolve
-                                      Outsourcing</a
-                                    >
-                                  </h4>
-                                  <p>
-                                    <i
-                                      class="fa fa-clock-o"
-                                      aria-hidden="true"
-                                    ></i>
-                                    june 01, 2017
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="fp">
-                              <div class="FP">
-                                <div class="fp-img">
-                                  <a href="#"
-                                    ><img
-                                      src="/frontend/assets/images/b8.jpg"
-                                      alt="image"
-                                  /></a>
-                                </div>
-                                <div class="fp-txt">
-                                  <h4 class="rp-title">
-                                    <a href="#"
-                                      >1234Pandemic Objectively Evolve
-                                      Outsourcing</a
-                                    >
-                                  </h4>
-                                  <p>
-                                    <i
-                                      class="fa fa-clock-o"
-                                      aria-hidden="true"
-                                    ></i>
-                                    june 01, 2017
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!--/.container-->
-                </div>
-              </section>
-
               <!-- Start Recent Post  -->
 
               <!-- End Recent Post -->
@@ -1376,155 +393,68 @@
                 <div class="row row-offcanvas row-offcanvas-right">
                   <div class="col-xs-12 col-sm-9">
                     <div class="category">
-                      <h1 class="category">Business</h1>
+                      <h1 class="category">
+                        {{ home.international_big.category.name }}
+                      </h1>
                     </div>
                     <div class="row">
                       <div class="col-md-8">
                         <div class="en-item">
                           <a class="en-img" href="#"
                             ><img
-                              src="/frontend/assets/images/b0.jpg"
+                              :src="`/uploads/post/${home.international_big.image}`"
                               alt="en-img1"
                               class="img-responsive"
                           /></a>
                           <a href="#">
                             <h3>
-                              Lorem ipsum dolor sit amet conse ctetur adipiscing
-                              elit
+                              {{ home.international_big.title.slice(0, 30) }}...
                             </h3>
                           </a>
-                          <p>
-                            Nulla quis lorem neque, mattis venenatis lectus. In
-                            interdum ullamcorper dolor ...interdum
-                          </p>
+                          <p v-html="home.international_big.desc"></p>
                           <h6>
                             Posted by<i
                               class="fa fa-user"
                               aria-hidden="true"
                             ></i>
-                            <a href="#">Admin</a><span> | </span
+                            <a
+                              href="#"
+                              v-if="home.international_big.admin.name"
+                              >{{ home.international_big.admin.name }}</a
+                            ><span> | </span
                             ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
+                            {{ home.international_big.date_fm }}
                           </h6>
                         </div>
                       </div>
 
-                      <div class="col-md-4">
+                      <div
+                        class="col-md-4"
+                        v-for="ip in home.international_posts"
+                        :key="ip.id"
+                      >
                         <div class="en-item">
                           <a class="en-img" href="#"
                             ><img
-                              src="/frontend/assets/images/b10.jpg"
+                              :src="`/uploads/post/${ip.image}`"
                               alt="en-img1"
                               class="img-responsive"
                           /></a>
                           <a href="#">
-                            <h3>
-                              Lorem ipsum dolor sit amet conse ctetur adipiscing
-                              elit
-                            </h3>
+                            <h3>{{ ip.title.slice(0, 30) }}...</h3>
                           </a>
-                          <p>
-                            Nulla quis lorem neque, mattis venenatis lectus. In
-                            interdum ullamcorper dolor ...interdum
-                          </p>
+                          <p v-html="ip.desc"></p>
                           <h6>
                             Posted by<i
                               class="fa fa-user"
                               aria-hidden="true"
                             ></i>
-                            <a href="#">Admin</a><span> | </span
+                            <a href="#" v-if="ip.admin.name">{{
+                              ip.admin.name
+                            }}</a
+                            ><span> | </span
                             ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
-                          </h6>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4">
-                        <div class="en-item">
-                          <a class="en-img" href="#"
-                            ><img
-                              src="/frontend/assets/images/b1.jpg"
-                              alt="en-img1"
-                              class="img-responsive"
-                          /></a>
-                          <a href="#">
-                            <h3>
-                              Lorem ipsum dolor sit amet conse ctetur adipiscing
-                              elit
-                            </h3>
-                          </a>
-                          <p>
-                            Nulla quis lorem neque, mattis venenatis lectus. In
-                            interdum ullamcorper dolor ...interdum
-                          </p>
-                          <h6>
-                            Posted by<i
-                              class="fa fa-user"
-                              aria-hidden="true"
-                            ></i>
-                            <a href="#">Admin</a><span> | </span
-                            ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
-                          </h6>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4">
-                        <div class="en-item">
-                          <a class="en-img" href="#"
-                            ><img
-                              src="/frontend/assets/images/b2.jpg"
-                              alt="en-img1"
-                              class="img-responsive"
-                          /></a>
-                          <a href="#">
-                            <h3>
-                              Lorem ipsum dolor sit amet conse ctetur adipiscing
-                              elit
-                            </h3>
-                          </a>
-                          <p>
-                            Nulla quis lorem neque, mattis venenatis lectus. In
-                            interdum ullamcorper dolor ...interdum
-                          </p>
-                          <h6>
-                            Posted by<i
-                              class="fa fa-user"
-                              aria-hidden="true"
-                            ></i>
-                            <a href="#">Admin</a><span> | </span
-                            ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
-                          </h6>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4">
-                        <div class="en-item">
-                          <a class="en-img" href="#"
-                            ><img
-                              src="/frontend/assets/images/b3.jpg"
-                              alt="en-img1"
-                              class="img-responsive"
-                          /></a>
-                          <a href="#">
-                            <h3>
-                              Lorem ipsum dolor sit amet conse ctetur adipiscing
-                              elit
-                            </h3>
-                          </a>
-                          <p>
-                            Nulla quis lorem neque, mattis venenatis lectus. In
-                            interdum ullamcorper dolor ...interdum
-                          </p>
-                          <h6>
-                            Posted by<i
-                              class="fa fa-user"
-                              aria-hidden="true"
-                            ></i>
-                            <a href="#">Admin</a><span> | </span
-                            ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
+                            {{ ip.date_fm }}
                           </h6>
                         </div>
                       </div>
@@ -1536,121 +466,37 @@
                   <div class="section-padding">
                     <div class="right-side">
                       <div class="new-title">
-                        <h3>pupular Posts</h3>
+                        <h3>Latest Posts</h3>
                       </div>
 
-                      <div class="fp">
+                      <div
+                        class="fp"
+                        v-for="ln in home.latest_posts"
+                        :key="ln.id"
+                      >
                         <div class="FP">
                           <div class="fp-img">
                             <a href="#"
                               ><img
-                                src="/frontend/assets/images/b4.jpg"
+                                :src="`/uploads/post/${ln.image}`"
                                 alt="image"
                             /></a>
                           </div>
                           <div class="fp-txt">
                             <h4 class="rp-title">
                               <a class="" href="#"
-                                >Pandemic Objectively Evolve Outsourcing</a
+                                >{{ ln.title.slice(0, 20) }}...</a
                               >
                             </h4>
                             <p>
                               <i class="fa fa-clock-o" aria-hidden="true"></i>
-                              june 01, 2017
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="fp">
-                        <div class="FP">
-                          <div class="fp-img">
-                            <a href="#"
-                              ><img
-                                src="/frontend/assets/images/b5.jpg"
-                                alt="image"
-                            /></a>
-                          </div>
-                          <div class="fp-txt">
-                            <h4 class="rp-title">
-                              <a href="#"
-                                >Pandemic Objectively Evolve Outsourcing</a
-                              >
-                            </h4>
-                            <p>
-                              <i class="fa fa-clock-o" aria-hidden="true"></i>
-                              june 01, 2017
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="fp">
-                        <div class="FP">
-                          <div class="fp-img">
-                            <a href="#"
-                              ><img
-                                src="/frontend/assets/images/b6.jpg"
-                                alt="image"
-                            /></a>
-                          </div>
-                          <div class="fp-txt">
-                            <h4 class="rp-title">
-                              <a href="#"
-                                >Pandemic Objectively Evolve Outsourcing</a
-                              >
-                            </h4>
-                            <p>
-                              <i class="fa fa-clock-o" aria-hidden="true"></i>
-                              june 01, 2017
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="fp">
-                        <div class="FP">
-                          <div class="fp-img">
-                            <a href="#"
-                              ><img
-                                src="/frontend/assets/images/b7.jpg"
-                                alt="image"
-                            /></a>
-                          </div>
-                          <div class="fp-txt">
-                            <h4 class="rp-title">
-                              <a href="#"
-                                >Pandemic Objectively Evolve Outsourcing</a
-                              >
-                            </h4>
-                            <p>
-                              <i class="fa fa-clock-o" aria-hidden="true"></i>
-                              june 01, 2017
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="fp">
-                        <div class="FP">
-                          <div class="fp-img">
-                            <a href="#"
-                              ><img
-                                src="/frontend/assets/images/b8.jpg"
-                                alt="image"
-                            /></a>
-                          </div>
-                          <div class="fp-txt">
-                            <h4 class="rp-title">
-                              <a href="#"
-                                >1234Pandemic Objectively Evolve Outsourcing</a
-                              >
-                            </h4>
-                            <p>
-                              <i class="fa fa-clock-o" aria-hidden="true"></i>
-                              june 01, 2017
+                              {{ ln.date_fm }}
                             </p>
                           </div>
                         </div>
                       </div>
 
-                      <div class="fp">
+                      <!-- <div class="fp">
                         <div class="FP">
                           <div class="new-title">
                             <h3>For Advertise</h3>
@@ -1662,7 +508,7 @@
                               class="img-responsive"
                           /></a>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                   <!--/.sidebar-offcanvas-->
@@ -1677,96 +523,12 @@
 
               <!-- Feature Job -->
 
-              <section class="featured-jobs">
-                <div class="container">
-                  <div class="category1">
-                    <h1>Top Videos</h1>
-                  </div>
-                  <!-- <div class="card-header-orange">
-                   <h1 class="card-heading">Top Vedio</h1>
-                </div> -->
-                  <div class="row">
-                    <!-- first feature job -->
-                    <div class="col-sm-6 col-md-4">
-                      <div class="thumbnail">
-                        <div class="en-item">
-                          <a class="en-img" href="#"
-                            ><img
-                              src="/frontend/assets/images/tv4.jpg"
-                              alt="en-img1"
-                              class="img-responsive"
-                          /></a>
-
-                          <h6>
-                            Posted by<i
-                              class="fa fa-user"
-                              aria-hidden="true"
-                            ></i>
-                            <a href="#">Admin</a><span> | </span
-                            ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
-                          </h6>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- second feature job -->
-                    <div class="col-sm-6 col-md-4">
-                      <div class="thumbnail">
-                        <div class="en-item">
-                          <a class="en-img" href="#"
-                            ><img
-                              src="/frontend/assets/images/tv1.jpg"
-                              alt="en-img1"
-                              class="img-responsive"
-                          /></a>
-
-                          <h6>
-                            Posted by<i
-                              class="fa fa-user"
-                              aria-hidden="true"
-                            ></i>
-                            <a href="#">Admin</a><span> | </span
-                            ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
-                          </h6>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- third feature job -->
-                    <div class="col-sm-6 col-md-4">
-                      <div class="thumbnail">
-                        <div class="en-item">
-                          <a class="en-img" href="#"
-                            ><img
-                              src="/frontend/assets/images/tv5.jpg"
-                              alt="en-img1"
-                              class="img-responsive"
-                          /></a>
-
-                          <h6>
-                            Posted by<i
-                              class="fa fa-user"
-                              aria-hidden="true"
-                            ></i>
-                            <a href="#">Admin</a><span> | </span
-                            ><i class="fa fa-clock-o" aria-hidden="true"></i>
-                            jun 01, 2017
-                          </h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
               <div class="container">
                 <div class="col-md-12">
                   <div class="add2">
-                    <a href="#"
+                    <a :href="home.top_bottom.link" target="_blank"
                       ><img
-                        src="/frontend/assets/images/add1.jpg"
+                        :src="`/uploads/ads/${home.top_bottom.image}`"
                         alt="image"
                         class="img-responsive"
                     /></a>
@@ -1781,167 +543,39 @@
               <div class="row row-offcanvas row-offcanvas-right">
                 <div class="col-xs-12 col-sm-9">
                   <div class="category12">
-                    <h1 class="category12">Sports</h1>
+                    <h1 class="category12">
+                      {{ home.bangladesh_posts[0].category.name }}
+                    </h1>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
+                    <div
+                      class="col-md-4"
+                      v-for="bp in home.bangladesh_posts"
+                      :key="bp.id"
+                    >
                       <div class="en-item">
                         <a class="en-img" href="#"
                           ><img
-                            src="/frontend/assets/images/sp0.jpg"
+                            :src="`/uploads/post/${bp.image}`"
                             alt="en-img1"
                             class="img-responsive"
-                        /></a>
-                        <a href="#">
-                          <h3>
-                            Lorem ipsum dolor sit amet conse ctetur adipiscing
-                            elit
-                          </h3>
+                          />
+                          <h5 v-if="bp.category.name">
+                            {{ bp.category.name }}
+                          </h5>
                         </a>
-                        <p>
-                          Nulla quis lorem neque, mattis venenatis lectus. In
-                          interdum ullamcorper dolor ...interdum
-                        </p>
+                        <a href="#">
+                          <h3>{{ bp.title.slice(0, 30) }}...</h3>
+                        </a>
+                        <p v-html="bp.desc"></p>
                         <h6>
                           Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                          <a href="#">Admin</a><span> | </span
-                          ><i class="fa fa-clock-o" aria-hidden="true"></i> jun
-                          01, 2017
-                        </h6>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4">
-                      <div class="en-item">
-                        <a class="en-img" href="#"
-                          ><img
-                            src="/frontend/assets/images/sp1.jpg"
-                            alt="en-img1"
-                            class="img-responsive"
-                        /></a>
-                        <a href="#">
-                          <h3>
-                            Lorem ipsum dolor sit amet conse ctetur adipiscing
-                            elit
-                          </h3>
-                        </a>
-                        <p>
-                          Nulla quis lorem neque, mattis venenatis lectus. In
-                          interdum ullamcorper dolor ...interdum
-                        </p>
-                        <h6>
-                          Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                          <a href="#">Admin</a><span> | </span
-                          ><i class="fa fa-clock-o" aria-hidden="true"></i> jun
-                          01, 2017
-                        </h6>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4">
-                      <div class="en-item">
-                        <a class="en-img" href="#"
-                          ><img
-                            src="/frontend/assets/images/sp2.jpg"
-                            alt="en-img1"
-                            class="img-responsive"
-                        /></a>
-                        <a href="#">
-                          <h3>
-                            Lorem ipsum dolor sit amet conse ctetur adipiscing
-                            elit
-                          </h3>
-                        </a>
-                        <p>
-                          Nulla quis lorem neque, mattis venenatis lectus. In
-                          interdum ullamcorper dolor ...interdum
-                        </p>
-                        <h6>
-                          Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                          <a href="#">Admin</a><span> | </span
-                          ><i class="fa fa-clock-o" aria-hidden="true"></i> jun
-                          01, 2017
-                        </h6>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4">
-                      <div class="en-item">
-                        <a class="en-img" href="#"
-                          ><img
-                            src="/frontend/assets/images/sp4.jpg"
-                            alt="en-img1"
-                            class="img-responsive"
-                        /></a>
-                        <a href="#">
-                          <h3>
-                            Lorem ipsum dolor sit amet conse ctetur adipiscing
-                            elit
-                          </h3>
-                        </a>
-                        <p>
-                          Nulla quis lorem neque, mattis venenatis lectus. In
-                          interdum ullamcorper dolor ...interdum
-                        </p>
-                        <h6>
-                          Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                          <a href="#">Admin</a><span> | </span
-                          ><i class="fa fa-clock-o" aria-hidden="true"></i> jun
-                          01, 2017
-                        </h6>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4">
-                      <div class="en-item">
-                        <a class="en-img" href="#"
-                          ><img
-                            src="/frontend/assets/images/sp6.jpg"
-                            alt="en-img1"
-                            class="img-responsive"
-                        /></a>
-                        <a href="#">
-                          <h3>
-                            Lorem ipsum dolor sit amet conse ctetur adipiscing
-                            elit
-                          </h3>
-                        </a>
-                        <p>
-                          Nulla quis lorem neque, mattis venenatis lectus. In
-                          interdum ullamcorper dolor ...interdum
-                        </p>
-                        <h6>
-                          Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                          <a href="#">Admin</a><span> | </span
-                          ><i class="fa fa-clock-o" aria-hidden="true"></i> jun
-                          01, 2017
-                        </h6>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4">
-                      <div class="en-item">
-                        <a class="en-img" href="#"
-                          ><img
-                            src="/frontend/assets/images/sp5.jpg"
-                            alt="en-img1"
-                            class="img-responsive"
-                        /></a>
-                        <a href="#">
-                          <h3>
-                            Lorem ipsum dolor sit amet conse ctetur adipiscing
-                            elit
-                          </h3>
-                        </a>
-                        <p>
-                          Nulla quis lorem neque, mattis venenatis lectus. In
-                          interdum ullamcorper dolor ...interdum
-                        </p>
-                        <h6>
-                          Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                          <a href="#">Admin</a><span> | </span
-                          ><i class="fa fa-clock-o" aria-hidden="true"></i> jun
-                          01, 2017
+                          <a href="#" v-if="bp.admin.name">{{
+                            bp.admin.name
+                          }}</a
+                          ><span> | </span
+                          ><i class="fa fa-clock-o" aria-hidden="true"></i>
+                          {{ bp.date_fm }}
                         </h6>
                       </div>
                     </div>
@@ -2095,17 +729,30 @@
         </div>
       </div>
     </section>
-
-    </span>
+  </span>
 </template>
 
 <script>
-    export default {
-        name: 'Home'
-
-    }
+export default {
+  name: "Home",
+  data() {
+    return {};
+  },
+  methods: {
+    homePost() {
+      this.$store.dispatch("post/homePost");
+    },
+  },
+  created() {
+    this.homePost();
+  },
+  computed: {
+    home() {
+      return this.$store.getters["post/homePost"];
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

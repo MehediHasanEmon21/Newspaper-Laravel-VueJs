@@ -1,9 +1,7 @@
 <?php
 
-Route::group([], function ($router) {
+Route::get('/get-user', 'UserAuthController@get_user');
 
-    Route::post('login', 'UserAuthController@login');
-    Route::post('logout', 'UserAuthController@logout');
-    Route::post('refresh', 'UserAuthController@refresh');
-    Route::post('me', 'UserAuthController@me');
+Route::get('/{path}', function () {
+    return view('public.public_layout');
 });

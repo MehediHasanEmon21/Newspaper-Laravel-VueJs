@@ -4,12 +4,16 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 
-import { admin } from './module/admin'
 import { category } from './module/category'
+import { post } from './module/post'
+import { ads } from './module/ads'
+import { user } from './module/user'
 
 export const store = new Vuex.Store({
     modules: {
-        admin: admin,
-        category: category
+        category: category,
+        post: post,
+        ads: ads,
+        user: user,
     }
 })

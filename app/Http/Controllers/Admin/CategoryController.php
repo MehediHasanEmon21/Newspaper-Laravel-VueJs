@@ -35,7 +35,17 @@ class CategoryController extends Controller
 
     public function all_category()
     {
-        $categories = Category::orderBy('id', 'DESC')->paginate();
+        $categories = Category::orderBy('id', 'DESC')->paginate(3);
+        // dd($categories->data);
+        return response()->json(['categories' => $categories]);
+    }
+
+    public function all_categories()
+    {
+        if (!\Request::ajax()) {
+            return abort(404);
+        }
+        $categories = Category::orderBy('name', 'ASC')->get();
         return response()->json(['categories' => $categories]);
     }
 

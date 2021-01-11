@@ -65,6 +65,48 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item has-treeview">
+            <a href="javascript:void()" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                News
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'PostAdd' }" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add News</p>
+                </router-link>
+                <router-link :to="{ name: 'PostList' }" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All News</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="javascript:void()" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Advertisement
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <router-link :to="{ name: 'AddsAdd' }" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Adds</p>
+                </router-link>
+                <router-link :to="{ name: 'AddsList' }" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Adds</p>
+                </router-link>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

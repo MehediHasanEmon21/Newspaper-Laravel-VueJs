@@ -110,6 +110,10 @@ export default {
               "admin_access_token",
               result.data.admin_access_token
             );
+            localStorage.setItem(
+              "admin_data",
+              JSON.stringify(result.data.auth_data)
+            );
             Toast.fire({
               icon: "success",
               title: "Logged In successfully",
