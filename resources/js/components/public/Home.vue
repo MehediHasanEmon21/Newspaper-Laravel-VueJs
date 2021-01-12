@@ -213,16 +213,20 @@
                   <div class="news-element">
                     <div class="n-box">
                       <div class="videos">
-                        <a href="#"
+                        <router-link
+                          :to="{ name: 'Details', params: { slug: ep.slug } }"
                           ><img
                             :src="`/uploads/post/${ep.image}`"
                             alt="image"
                             class="img-responsive"
-                        /></a>
+                        /></router-link>
                       </div>
                       <div class="n-txt">
                         <h3>
-                          <a href="#">{{ ep.title }}...</a>
+                          <router-link
+                            :to="{ name: 'Details', params: { slug: ep.slug } }"
+                            >{{ ep.title }}...</router-link
+                          >
                         </h3>
                         <h5>
                           <i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -233,8 +237,11 @@
                           }}</a>
                         </h5>
                         <p v-html="ep.desc"></p>
-                        <a href="#"
-                          ><button class="custom-btn">read more</button></a
+                        <router-link
+                          :to="{ name: 'Details', params: { slug: ep.slug } }"
+                          ><button class="custom-btn">
+                            read more
+                          </button></router-link
                         >
                       </div>
                     </div>
@@ -266,7 +273,9 @@
                         :key="sp.id"
                       >
                         <div class="en-item">
-                          <a class="en-img" href="#"
+                          <router-link
+                            class="en-img"
+                            :to="{ name: 'Details', params: { slug: sp.slug } }"
                             ><img
                               :src="`/uploads/post/${sp.image}`"
                               alt="en-img1"
@@ -275,10 +284,12 @@
                             <h5 v-if="sp.category.name">
                               {{ sp.category.name }}
                             </h5>
-                          </a>
-                          <a href="#">
+                          </router-link>
+                          <router-link
+                            :to="{ name: 'Details', params: { slug: sp.slug } }"
+                          >
                             <h3>{{ sp.title.slice(0, 30) }}...</h3>
-                          </a>
+                          </router-link>
                           <p v-html="sp.desc"></p>
                           <h6>
                             Posted by<i
@@ -312,17 +323,30 @@
                       >
                         <div class="FP">
                           <div class="fp-img">
-                            <a href="#"
+                            <router-link
+                              :to="{
+                                name: 'Details',
+                                params: { slug: pp.post.slug },
+                              }"
                               ><img
                                 v-if="pp.post.image"
                                 :src="`/uploads/post/${pp.post.image}`"
                                 alt="image"
-                            /></a>
+                            /></router-link>
                           </div>
                           <div class="fp-txt">
                             <h4 class="rp-title">
-                              <a class="" href="#" v-if="pp.post.title"
-                                >{{ pp.post.title.slice(0, 20) }}...</a
+                              <router-link
+                                :to="{
+                                  name: 'Details',
+                                  params: { slug: pp.post.slug },
+                                }"
+                                class=""
+                                href="#"
+                                v-if="pp.post.title"
+                                >{{
+                                  pp.post.title.slice(0, 20)
+                                }}...</router-link
                               >
                             </h4>
                             <p>
@@ -400,17 +424,27 @@
                     <div class="row">
                       <div class="col-md-8">
                         <div class="en-item">
-                          <a class="en-img" href="#"
+                          <router-link
+                            class="en-img"
+                            :to="{
+                              name: 'Details',
+                              params: { slug: home.international_big.slug },
+                            }"
                             ><img
                               :src="`/uploads/post/${home.international_big.image}`"
                               alt="en-img1"
                               class="img-responsive"
-                          /></a>
-                          <a href="#">
+                          /></router-link>
+                          <router-link
+                            :to="{
+                              name: 'Details',
+                              params: { slug: home.international_big.slug },
+                            }"
+                          >
                             <h3>
                               {{ home.international_big.title.slice(0, 30) }}...
                             </h3>
-                          </a>
+                          </router-link>
                           <p v-html="home.international_big.desc"></p>
                           <h6>
                             Posted by<i
@@ -434,15 +468,19 @@
                         :key="ip.id"
                       >
                         <div class="en-item">
-                          <a class="en-img" href="#"
+                          <router-link
+                            class="en-img"
+                            :to="{ name: 'Details', params: { slug: ip.slug } }"
                             ><img
                               :src="`/uploads/post/${ip.image}`"
                               alt="en-img1"
                               class="img-responsive"
-                          /></a>
-                          <a href="#">
+                          /></router-link>
+                          <router-link
+                            :to="{ name: 'Details', params: { slug: ip.slug } }"
+                          >
                             <h3>{{ ip.title.slice(0, 30) }}...</h3>
-                          </a>
+                          </router-link>
                           <p v-html="ip.desc"></p>
                           <h6>
                             Posted by<i
@@ -476,16 +514,25 @@
                       >
                         <div class="FP">
                           <div class="fp-img">
-                            <a href="#"
+                            <router-link
+                              :to="{
+                                name: 'Details',
+                                params: { slug: ln.slug },
+                              }"
                               ><img
                                 :src="`/uploads/post/${ln.image}`"
                                 alt="image"
-                            /></a>
+                            /></router-link>
                           </div>
                           <div class="fp-txt">
                             <h4 class="rp-title">
-                              <a class="" href="#"
-                                >{{ ln.title.slice(0, 20) }}...</a
+                              <router-link
+                                class=""
+                                :to="{
+                                  name: 'Details',
+                                  params: { slug: ln.slug },
+                                }"
+                                >{{ ln.title.slice(0, 20) }}...</router-link
                               >
                             </h4>
                             <p>
@@ -541,7 +588,7 @@
 
             <div class="container">
               <div class="row row-offcanvas row-offcanvas-right">
-                <div class="col-xs-12 col-sm-9">
+                <div class="col-xs-12 col-sm-12">
                   <div class="category12">
                     <h1 class="category12">
                       {{ home.bangladesh_posts[0].category.name }}
@@ -554,7 +601,9 @@
                       :key="bp.id"
                     >
                       <div class="en-item">
-                        <a class="en-img" href="#"
+                        <router-link
+                          class="en-img"
+                          :to="{ name: 'Details', params: { slug: bp.slug } }"
                           ><img
                             :src="`/uploads/post/${bp.image}`"
                             alt="en-img1"
@@ -563,10 +612,12 @@
                           <h5 v-if="bp.category.name">
                             {{ bp.category.name }}
                           </h5>
-                        </a>
-                        <a href="#">
+                        </router-link>
+                        <router-link
+                          :to="{ name: 'Details', params: { slug: bp.slug } }"
+                        >
                           <h3>{{ bp.title.slice(0, 30) }}...</h3>
-                        </a>
+                        </router-link>
                         <p v-html="bp.desc"></p>
                         <h6>
                           Posted by<i class="fa fa-user" aria-hidden="true"></i>
@@ -584,138 +635,6 @@
                 </div>
                 <!--/.col-xs-12.col-sm-9-->
 
-                <div class="section-padding">
-                  <div class="right-side">
-                    <div class="new-title">
-                      <h3>pupular Posts123</h3>
-                    </div>
-
-                    <div class="fp">
-                      <div class="FP">
-                        <div class="fp-img">
-                          <a href="#"
-                            ><img
-                              src="/frontend/assets/images/ent.jpg"
-                              alt="image"
-                          /></a>
-                        </div>
-                        <div class="fp-txt">
-                          <h4 class="rp-title">
-                            <a class="" href="#"
-                              >Pandemic Objectively Evolve Outsourcing</a
-                            >
-                          </h4>
-                          <p>
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            june 01, 2017
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fp">
-                      <div class="FP">
-                        <div class="fp-img">
-                          <a href="#"
-                            ><img
-                              src="/frontend/assets/images/spo.jpg"
-                              alt="image"
-                          /></a>
-                        </div>
-                        <div class="fp-txt">
-                          <h4 class="rp-title">
-                            <a href="#"
-                              >Pandemic Objectively Evolve Outsourcing</a
-                            >
-                          </h4>
-                          <p>
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            june 01, 2017
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fp">
-                      <div class="FP">
-                        <div class="fp-img">
-                          <a href="#"
-                            ><img
-                              src="/frontend/assets/images/Recent_02.jpg"
-                              alt="image"
-                          /></a>
-                        </div>
-                        <div class="fp-txt">
-                          <h4 class="rp-title">
-                            <a href="#"
-                              >Pandemic Objectively Evolve Outsourcing</a
-                            >
-                          </h4>
-                          <p>
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            june 01, 2017
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fp">
-                      <div class="FP">
-                        <div class="fp-img">
-                          <a href="#"
-                            ><img
-                              src="/frontend/assets/images/sp1.jpg"
-                              alt="image"
-                          /></a>
-                        </div>
-                        <div class="fp-txt">
-                          <h4 class="rp-title">
-                            <a href="#"
-                              >Pandemic Objectively Evolve Outsourcing</a
-                            >
-                          </h4>
-                          <p>
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            june 01, 2017
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="fp">
-                      <div class="FP">
-                        <div class="fp-img">
-                          <a href="#"
-                            ><img
-                              src="/frontend/assets/images/fasn.jpg"
-                              alt="image"
-                          /></a>
-                        </div>
-                        <div class="fp-txt">
-                          <h4 class="rp-title">
-                            <a href="#"
-                              >1234Pandemic Objectively Evolve Outsourcing</a
-                            >
-                          </h4>
-                          <p>
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            june 01, 2017
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="fp">
-                      <div class="FP">
-                        <div class="new-title">
-                          <h3>ADD5678</h3>
-                        </div>
-                        <a href="#"
-                          ><img
-                            src="/frontend/assets/images/add4.jpg"
-                            alt="image"
-                            class="img-responsive"
-                        /></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 <!--/.sidebar-offcanvas-->
               </div>
               <!--/row-->

@@ -3,7 +3,9 @@
     <section id="slide">
       <div class="s-bg slide">
         <div class="container">
-          <h2>sports content</h2>
+          <h2 v-if="posts.category_posts.data[0].category.name">
+            {{ posts.category_posts.data[0].category.name }} content
+          </h2>
         </div>
       </div>
       <!-- /.sbg -->
@@ -14,10 +16,10 @@
             ><i class="fa fa-angle-double-right" aria-hidden="true"></i>
           </li>
           <li>
-            <a href="#">entertaimant</a
+            <a href="#">{{ this.$route.params.slug }}</a
             ><i class="fa fa-angle-double-right" aria-hidden="true"></i>
           </li>
-          <li class="active">entertaiman history</li>
+          <li class="active">{{ this.$route.params.slug }} history</li>
         </ol>
       </div>
     </section>
@@ -45,8 +47,13 @@
                       >
                     </h3>
                     <p class="content">
-                      by <a href="#" class="admin">Admin</a> <span>|</span>
-                      <a href="#">with 3 Comments</a> <span>|</span>
+                      by
+                      <a href="#" class="admin" v-if="post.admin.name">{{
+                        post.admin.name
+                      }}</a>
+                      <span>|</span>
+                      <a href="#">with {{ post.comment }} Comments</a>
+                      <span>|</span>
                     </p>
                     <p v-html="post.desc"></p>
                   </div>
@@ -68,119 +75,50 @@
                 <h3 class="border">categories</h3>
                 <ul>
                   <li v-for="category in posts.categories" :key="category.id">
-                    <a href="#">{{ category.name }} </a>
+                    <router-link
+                      :to="{
+                        name: 'Categories',
+                        params: { slug: category.slug },
+                      }"
+                      >{{ category.name }}
+                    </router-link>
                   </li>
                 </ul>
               </div>
               <div class="right-side">
                 <h3 class="border">Recent Posts</h3>
                 <div class="rp">
-                  <div class="RP">
+                  <div class="RP" v-for="ln in posts.latest_posts" :key="ln.id">
                     <div class="rp-img">
                       <a href="#"
-                        ><img
-                          src="/frontend/assets/images/th (2).jpg"
-                          alt="image"
+                        ><img :src="`/uploads/post/${ln.image}`" alt="image"
                       /></a>
                     </div>
                     <div class="rp-txt">
-                      <h4><a href="#">Every Golden Snow Land</a></h4>
-                      <p>Business - Aug 2015</p>
-                    </div>
-                  </div>
-                  <div class="RP">
-                    <div class="rp-img">
-                      <a href="#"
-                        ><img
-                          src="/frontend/assets/images/sps2.jpg"
-                          alt="image"
-                      /></a>
-                    </div>
-                    <div class="rp-txt">
-                      <h4><a href="#">Every Golden Snow Land</a></h4>
-                      <p>Business - Aug 2015</p>
-                    </div>
-                  </div>
-                  <div class="RP">
-                    <div class="rp-img">
-                      <a href="#"
-                        ><img
-                          src="/frontend/assets/images/sps1.jpg"
-                          alt="image"
-                      /></a>
-                    </div>
-                    <div class="rp-txt">
-                      <h4><a href="#">Every Golden Snow Land</a></h4>
-                      <p>Business - Aug 2015</p>
-                    </div>
-                  </div>
-                  <div class="RP">
-                    <div class="rp-img">
-                      <a href="#"
-                        ><img src="/frontend/assets/images/sp1.jpg" alt="image"
-                      /></a>
-                    </div>
-                    <div class="rp-txt">
-                      <h4><a href="#">Every Golden Snow Land</a></h4>
-                      <p>Business - Aug 2015</p>
+                      <h4>
+                        <router-link
+                          :to="{ name: 'Details', params: { slug: ln.slug } }"
+                          >{{ ln.title.slice(0, 20) }}...</router-link
+                        >
+                      </h4>
+                      <p v-if="ln.category.name">
+                        {{ ln.category.name }} - {{ ln.date_fm }}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="blog-tag">
-                <h3 class="border">popular tags</h3>
-                <ul>
-                  <li><a href="#" class="hvr-rectangle-in">animal</a></li>
-                  <li>
-                    <a href="#" class="hvr-rectangle-in">graphic design</a>
-                  </li>
-                  <li><a href="#" class="hvr-rectangle-in">business</a></li>
-                  <li><a href="#" class="hvr-rectangle-in">identity</a></li>
-                  <li><a href="#" class="hvr-rectangle-in">blog</a></li>
-                  <li><a href="#" class="hvr-rectangle-in">travel</a></li>
-                  <li><a href="#" class="hvr-rectangle-in">format</a></li>
-                  <li><a href="#" class="hvr-rectangle-in">life style</a></li>
-                  <li><a href="#" class="hvr-rectangle-in">quote</a></li>
-                  <li><a href="#" class="hvr-rectangle-in">news post</a></li>
-                </ul>
-              </div>
+
               <div class="feeds">
-                <h3 class="border">twitter feeds</h3>
+                <h3 class="border">For Advertisement</h3>
                 <div class="twitt">
                   <div class="tw">
-                    <div class="tw-icon">
-                      <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </div>
-                    <div class="tw-txt">
-                      <p>
-                        The standard chunk of Lore Ipsuusesince the reproduced
-                        below.
-                      </p>
-                      <a href="#">http://every.to/EV77F</a>
-                      <div class="link">
-                        <button class="btn btn-default hvr-rectangle-in">
-                          3 min ago
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <hr />
-                  <div class="tw">
-                    <div class="tw-icon">
-                      <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </div>
-                    <div class="tw-txt">
-                      <p>
-                        The standard chunk of Lore Ipsuusesince the reproduced
-                        below.
-                      </p>
-                      <a href="#">http://every.to/EV77F</a>
-                      <div class="link">
-                        <button class="btn btn-default hvr-rectangle-in">
-                          3 min ago
-                        </button>
-                      </div>
-                    </div>
+                    <a href="#"
+                      ><img
+                        src="/frontend/assets/images/add14.jpg"
+                        alt="image"
+                        class="img-responsive"
+                    /></a>
                   </div>
                 </div>
               </div>

@@ -13,7 +13,7 @@ export default {
       title: "Logged Out successfully",
     });
     this.getUser();
-    this.$router.push({ name: "Home" });
+    this.$router.push({ name: "Login" });
   },
   methods: {
     getUser() {

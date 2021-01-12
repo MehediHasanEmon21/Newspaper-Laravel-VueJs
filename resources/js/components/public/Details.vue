@@ -43,7 +43,8 @@
                     <a href="#" class="admin" v-if="single.post.admin.name">{{
                       single.post.admin.name
                     }}</a>
-                    <span>|</span> <a href="#">with 3 Comments</a>
+                    <span>|</span>
+                    <a href="#">with {{ single.post.comment }} Comments</a>
                     <span>|</span>
                   </p>
 
@@ -55,40 +56,17 @@
                         v-for="category in single.categories"
                         :key="category.id"
                       >
-                        <a href="javascript:void()">{{ category.name }}</a>
+                        <router-link
+                          :to="{
+                            name: 'Categories',
+                            params: { slug: category.slug },
+                          }"
+                          >{{ category.name }}</router-link
+                        >
                       </li>
                     </ul>
                   </div>
-                  <div class="share-post">
-                    <label> Share This Post</label>
-                    <ul>
-                      <li>
-                        <a href="#"
-                          ><i class="fa fa-facebook" aria-hidden="true"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="fa fa-twitter" aria-hidden="true"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="fa fa-pinterest-p" aria-hidden="true"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="fa fa-google-plus" aria-hidden="true"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="fa fa-linkedin" aria-hidden="true"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
+                  <div class="share-post"></div>
                   <div class="a-post">
                     <img src="/frontend/assets/images/c2.jpg" alt="image" />
                     <div class="a-txt">
@@ -211,105 +189,54 @@
                 <h3 class="border">categories</h3>
                 <ul>
                   <li v-for="category in single.categories" :key="category.id">
-                    <a href="javascript:void()">{{ category.name }}</a>
+                    <router-link
+                      :to="{
+                        name: 'Categories',
+                        params: { slug: category.slug },
+                      }"
+                      >{{ category.name }}</router-link
+                    >
                   </li>
                 </ul>
               </div>
               <div class="right-side">
                 <h3 class="border">Recent Posts</h3>
                 <div class="rp">
-                  <div class="RP">
+                  <div
+                    class="RP"
+                    v-for="ln in single.latest_posts"
+                    :key="ln.id"
+                  >
                     <div class="rp-img">
                       <a href="#"
-                        ><img
-                          src="/frontend/assets/images/blog/rp1.jpg"
-                          alt="image"
+                        ><img :src="`/uploads/post/${ln.image}`" alt="image"
                       /></a>
                     </div>
                     <div class="rp-txt">
-                      <h4><a href="#">Every Golden Snow Land</a></h4>
-                      <p>Business - Aug 2015</p>
-                    </div>
-                  </div>
-                  <div class="RP">
-                    <div class="rp-img">
-                      <a href="#"
-                        ><img
-                          src="/frontend/assets/images/blog/rp2.jpg"
-                          alt="image"
-                      /></a>
-                    </div>
-                    <div class="rp-txt">
-                      <h4><a href="#">Every Golden Snow Land</a></h4>
-                      <p>Business - Aug 2015</p>
-                    </div>
-                  </div>
-                  <div class="RP">
-                    <div class="rp-img">
-                      <a href="#"
-                        ><img
-                          src="/frontend/assets/images/blog/rp3.jpg"
-                          alt="image"
-                      /></a>
-                    </div>
-                    <div class="rp-txt">
-                      <h4><a href="#">Every Golden Snow Land</a></h4>
-                      <p>Business - Aug 2015</p>
-                    </div>
-                  </div>
-                  <div class="RP">
-                    <div class="rp-img">
-                      <a href="#"
-                        ><img
-                          src="/frontend/assets/images/blog/rp4.jpg"
-                          alt="image"
-                      /></a>
-                    </div>
-                    <div class="rp-txt">
-                      <h4><a href="#">Every Golden Snow Land</a></h4>
-                      <p>Business - Aug 2015</p>
+                      <h4>
+                        <router-link
+                          :to="{ name: 'Details', params: { slug: ln.slug } }"
+                          >{{ ln.title.slice(0, 20) }}...</router-link
+                        >
+                      </h4>
+                      <p v-if="ln.category.name">
+                        {{ ln.category.name }} - {{ ln.date_fm }}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="feeds">
-                <h3 class="border">twitter feeds</h3>
+                <h3 class="border">For Advertisement</h3>
                 <div class="twitt">
                   <div class="tw">
-                    <div class="tw-icon">
-                      <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </div>
-                    <div class="tw-txt">
-                      <p>
-                        The standard chunk of Lore Ipsuusesince the reproduced
-                        below.
-                      </p>
-                      <a href="#">http://every.to/EV77F</a>
-                      <div class="link">
-                        <button class="btn btn-default hvr-rectangle-in">
-                          3 min ago
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <hr />
-                  <div class="tw">
-                    <div class="tw-icon">
-                      <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </div>
-                    <div class="tw-txt">
-                      <p>
-                        The standard chunk of Lore Ipsuusesince the reproduced
-                        below.
-                      </p>
-                      <a href="#">http://every.to/EV77F</a>
-                      <div class="link">
-                        <button class="btn btn-default hvr-rectangle-in">
-                          3 min ago
-                        </button>
-                      </div>
-                    </div>
+                    <a href="#"
+                      ><img
+                        src="/frontend/assets/images/add14.jpg"
+                        alt="image"
+                        class="img-responsive"
+                    /></a>
                   </div>
                 </div>
               </div>

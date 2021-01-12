@@ -13,6 +13,7 @@ import DetailsComponent from '../components/public/Details.vue'
 import LoginComponent from '../components/public/Login.vue'
 import LogoutComponent from '../components/public/Logout.vue'
 import RegisterComponent from '../components/public/Register.vue'
+import UserDashboardComponent from '../components/public/UserDashboard.vue'
 import ContactComponent from '../components/public/Contact.vue'
 import CategoriesComponent from '../components/public/Categories.vue'
 
@@ -54,6 +55,11 @@ const router = new VueRouter({
             path: '/user/user-logout',
             component: LogoutComponent,
             name: 'Logout'
+        },
+         {
+            path: '/user/user-dashboard',
+            component: UserDashboardComponent,
+            name: 'UserDashboard'
         },
 
     ]

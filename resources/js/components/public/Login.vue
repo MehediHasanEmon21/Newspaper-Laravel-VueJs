@@ -103,7 +103,7 @@ export default {
               title: "Logged In successfully",
             });
             this.getUser();
-            this.$router.push({ name: "Home" });
+            this.$router.push({ name: "UserDashboard" });
           }
         })
         .catch((err) => {
@@ -113,6 +113,12 @@ export default {
     getUser() {
       this.$store.dispatch("user/getUser");
     },
+  },
+  created() {
+    let token = localStorage.getItem("user_access_token");
+    if (token) {
+      this.$router.push({ name: "UserDashboard" });
+    }
   },
 };
 </script>

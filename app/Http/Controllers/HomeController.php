@@ -53,7 +53,7 @@ class HomeController extends Controller
         foreach ($bangladesh_posts as $key => $bp) {
             $this->helper($bp);
         }
-        $popular_posts = PostView::limit(5)->orderBy('id', 'DESC')->get();
+        $popular_posts = PostView::limit(5)->distinct()->orderBy('id', 'DESC')->get();
         foreach ($popular_posts as $key => $pp) {
             $pp->date_fm = date('M j, Y', strtotime($pp->post->date));
         }
@@ -90,8 +90,13 @@ class HomeController extends Controller
         $post = Post::where('slug', $slug)->first();
         $post->date_fm1 = date('M', strtotime($post->date));
         $post->date_fm2 = date('d', strtotime($post->date));
+        $post->comment = Comment::where('post_id', $post->id)->get()->count();
         $categories = Category::orderBy('name', 'ASC')->limit(5)->get();
         $related_posts = Post::where('category_id', '!=', $post->id)->where('category_id', $post->category_id)->limit(3)->get();
+        $latest_posts = Post::orderBy('id', 'DESC')->limit(5)->get();
+        foreach ($latest_posts as $key => $lp) {
+            $this->helper($lp);
+        }
         $pv = new PostView();
         $pv->post_id = $post->id;
         $pv->save();
@@ -101,7 +106,8 @@ class HomeController extends Controller
         return response()->json([
             'post' => $post,
             'categories' => $categories,
-            'related_posts' => $related_posts
+            'related_posts' => $related_posts,
+            'latest_posts' => $latest_posts,
         ]);
     }
 
@@ -134,14 +140,21 @@ class HomeController extends Controller
         $category = Category::where('slug', $slug)->first();
         $category_posts = Post::where('category_id', $category->id)->orderBy('id', 'DESC')->paginate(5);
         $categories = Category::orderBy('name', 'ASC')->limit(5)->get();
+        $latest_posts = Post::orderBy('id', 'DESC')->limit(5)->get();
+        foreach ($latest_posts as $key => $lp) {
+            $this->helper($lp);
+        }
         foreach ($category_posts as $key => $cp) {
             $cp->date_fm1 = date('M', strtotime($cp->date));
             $cp->date_fm2 = date('d', strtotime($cp->date));
             $cp->desc = substr($cp->details, 0, 200);
+            $comment_count = Comment::where('post_id', $cp->id)->get()->count();
+            $cp->comment = $comment_count;
         }
         return response()->json([
             'category_posts' => $category_posts,
             'categories' => $categories,
+            'latest_posts' => $latest_posts
         ]);
     }
 }

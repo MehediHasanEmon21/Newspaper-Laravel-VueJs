@@ -21,6 +21,7 @@ Route::group(['prefix' => 'user'], function ($router) {
     Route::post('logout', 'UserAuthController@logout');
     Route::post('refresh', 'UserAuthController@refresh');
     Route::post('me', 'UserAuthController@me');
+    Route::post('user-register', 'UserAuthController@register');
 });
 
 Route::group(['prefix' => 'admin'], function ($router) {
