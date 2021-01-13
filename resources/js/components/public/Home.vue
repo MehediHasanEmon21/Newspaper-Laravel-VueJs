@@ -8,17 +8,22 @@
             <h3>backing-news ::</h3>
           </div>
         </div>
-        <div class="col-md-10">
-          <div class="b-n">
-            <marquee behavior="scroll" direction="right">
-              <p>
-                Conveniently exploit performance based systems.without B2B
-                expertise. Seamlessly productivate highly efficient paradigms
-                whereas intermandated
-              </p>
-            </marquee>
+        <router-link
+          :to="{
+            name: 'Details',
+            params: { slug: home.breaking_post.post.slug },
+          }"
+        >
+          <div class="col-md-10">
+            <div class="b-n">
+              <marquee behavior="scroll" direction="right">
+                <p v-if="home.breaking_post.post.title">
+                  {{ home.breaking_post.post.title }}
+                </p>
+              </marquee>
+            </div>
           </div>
-        </div>
+        </router-link>
         <div class="add">
           <a href="javascript:void()" target="_blank"
             ><img
@@ -64,7 +69,7 @@
                   v-for="(slider, index) in home.slider_ads"
                   :key="slider.id"
                 >
-                  <a href=""
+                  <a
                     ><img
                       :src="`/uploads/ads/${slider.image}`"
                       alt="First slide"
@@ -111,14 +116,20 @@
                     v-for="post in home.random_posts"
                     :key="post.id"
                   >
-                    <a href="#"
+                    <router-link
+                      :to="{
+                        name: 'Details',
+                        params: { slug: post.slug },
+                      }"
                       ><img
                         :src="`/uploads/post/${post.image}`"
                         alt="sponsor"
                         class="img-responsive"
-                    /></a>
-                    <a href="#">
-                      <h2>entertaiment</h2>
+                    /></router-link>
+                    <a href="javascript:void()">
+                      <h2 v-if="post.category.name">
+                        {{ post.category.name }}
+                      </h2>
                     </a>
                   </div>
                 </div>

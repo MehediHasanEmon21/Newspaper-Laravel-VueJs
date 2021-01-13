@@ -174,4 +174,33 @@ class AdsController extends Controller
             'settings' => $settings,
         ]);
     }
+
+    public function edit_setting($id)
+    {
+        $setting = Setting::find($id);
+        return response()->json([
+            'setting' => $setting,
+        ]);
+    }
+
+    public function update_setting(Request $request)
+    {
+
+        $request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required',
+                'mobile' => 'required',
+                'address' => 'required',
+            ]
+
+        );
+
+        $setting = Setting::find($request->id);
+        $setting->name = $request->name;
+        $setting->email = $request->email;
+        $setting->mobile = $request->mobile;
+        $setting->address = $request->address;
+        $setting->save();
+    }
 }

@@ -40,6 +40,8 @@ Route::get('/breaking-posts', 'Admin\AdsController@all_breaking_news');
 Route::get('/breaking-delete/{id}', 'Admin\AdsController@breaking_news_delete');
 
 Route::get('/all-settings', 'Admin\AdsController@all_setting');
+Route::get('/edit-setting/{id}', 'Admin\AdsController@edit_setting');
+Route::post('/update-setting', 'Admin\AdsController@update_setting');
 
 
 

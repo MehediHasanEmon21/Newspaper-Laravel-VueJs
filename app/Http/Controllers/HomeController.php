@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Category;
 use App\Model\Post;
 use App\Model\Advertisement;
+use App\Model\BreakingPost;
 use App\Model\Comment;
 use App\Model\PostView;
 
@@ -57,6 +58,7 @@ class HomeController extends Controller
         foreach ($popular_posts as $key => $pp) {
             $pp->date_fm = date('M j, Y', strtotime($pp->post->date));
         }
+        $breaking_post = BreakingPost::orderBy('id', 'DESC')->first();
 
         return response()->json(
             [
@@ -73,6 +75,7 @@ class HomeController extends Controller
                 'center_ad' => $center_ad,
                 'top_bottom' => $top_bottom,
                 'popular_posts' => $popular_posts,
+                'breaking_post' => $breaking_post
             ]
         );
     }

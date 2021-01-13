@@ -37,6 +37,7 @@ import BreakingPost from '../components/admin/breaking/BreakingPost'
 
 //setting component
 import SettingList from '../components/admin/setting/SettingList'
+import SettingEdit from '../components/admin/setting/SettingEdit'
 
 import AdminLogin from '../components/admin/auth/AdminLogin'
 import AdminLogout from '../components/admin/auth/AdminLogout'
@@ -143,6 +144,11 @@ const router = new VueRouter({
             path: '/admin/setting-list',
             component: SettingList,
             name: 'SettingList'
+        },
+        {
+            path: '/admin/setting-edit/:id',
+            component: SettingEdit,
+            name: 'SettingEdit'
         },
 
     ]

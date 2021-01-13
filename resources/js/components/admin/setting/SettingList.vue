@@ -49,7 +49,14 @@
                       <td>{{ setting.address }}</td>
 
                       <td>
-                        <a class="btn btn-sm btn-success">Edit</a>
+                        <router-link
+                          :to="{
+                            name: 'SettingEdit',
+                            params: { id: setting.id },
+                          }"
+                          class="btn btn-sm btn-success"
+                          >Edit</router-link
+                        >
                       </td>
                     </tr>
                   </tbody>

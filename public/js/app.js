@@ -3206,6 +3206,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   data: function data() {
@@ -44212,42 +44223,68 @@ var render = function() {
     _c("div", { staticClass: "main-menu-container" }),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "bck-news" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-10" }, [
+      _c(
+        "div",
+        { staticClass: "bck-news" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
           _c(
-            "div",
-            { staticClass: "b-n" },
-            [
-              _c(
-                "marquee",
-                { attrs: { behavior: "scroll", direction: "right" } },
-                [
-                  _c("p", [
-                    _vm._v(
-                      "\n              Conveniently exploit performance based systems.without B2B\n              expertise. Seamlessly productivate highly efficient paradigms\n              whereas intermandated\n            "
-                    )
-                  ])
-                ]
-              )
-            ],
-            1
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "add" }, [
-          _c("a", { attrs: { href: "javascript:void()", target: "_blank" } }, [
-            _c("img", {
-              staticClass: "img-responsive",
+            "router-link",
+            {
               attrs: {
-                src: "/uploads/ads/" + _vm.home.top_ad.image,
-                alt: "image"
+                to: {
+                  name: "Details",
+                  params: { slug: _vm.home.breaking_post.post.slug }
+                }
               }
-            })
+            },
+            [
+              _c("div", { staticClass: "col-md-10" }, [
+                _c(
+                  "div",
+                  { staticClass: "b-n" },
+                  [
+                    _c(
+                      "marquee",
+                      { attrs: { behavior: "scroll", direction: "right" } },
+                      [
+                        _vm.home.breaking_post.post.title
+                          ? _c("p", [
+                              _vm._v(
+                                "\n                " +
+                                  _vm._s(_vm.home.breaking_post.post.title) +
+                                  "\n              "
+                              )
+                            ])
+                          : _vm._e()
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "add" }, [
+            _c(
+              "a",
+              { attrs: { href: "javascript:void()", target: "_blank" } },
+              [
+                _c("img", {
+                  staticClass: "img-responsive",
+                  attrs: {
+                    src: "/uploads/ads/" + _vm.home.top_ad.image,
+                    alt: "image"
+                  }
+                })
+              ]
+            )
           ])
-        ])
-      ])
+        ],
+        1
+      )
     ]),
     _vm._v(" "),
     _c("section", { attrs: { id: "slider" } }, [
@@ -44278,7 +44315,7 @@ var render = function() {
                         class: index == 0 ? "active" : ""
                       },
                       [
-                        _c("a", { attrs: { href: "" } }, [
+                        _c("a", [
                           _c("img", {
                             attrs: {
                               src: "/uploads/ads/" + slider.image,
@@ -44328,18 +44365,40 @@ var render = function() {
                       "div",
                       { key: post.id, staticClass: "swiper-slide" },
                       [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _c("img", {
-                            staticClass: "img-responsive",
+                        _c(
+                          "router-link",
+                          {
                             attrs: {
-                              src: "/uploads/post/" + post.image,
-                              alt: "sponsor"
+                              to: {
+                                name: "Details",
+                                params: { slug: post.slug }
+                              }
                             }
-                          })
-                        ]),
+                          },
+                          [
+                            _c("img", {
+                              staticClass: "img-responsive",
+                              attrs: {
+                                src: "/uploads/post/" + post.image,
+                                alt: "sponsor"
+                              }
+                            })
+                          ]
+                        ),
                         _vm._v(" "),
-                        _vm._m(4, true)
-                      ]
+                        _c("a", { attrs: { href: "javascript:void()" } }, [
+                          post.category.name
+                            ? _c("h2", [
+                                _vm._v(
+                                  "\n                      " +
+                                    _vm._s(post.category.name) +
+                                    "\n                    "
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ],
+                      1
                     )
                   }),
                   0
@@ -44347,7 +44406,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(5)
+            _vm._m(4)
           ])
         ])
       ])
@@ -44709,7 +44768,7 @@ var render = function() {
                         "div",
                         { staticClass: "right-side" },
                         [
-                          _vm._m(6),
+                          _vm._m(5),
                           _vm._v(" "),
                           _vm._l(_vm.home.popular_posts, function(pp) {
                             return _c(
@@ -44797,7 +44856,7 @@ var render = function() {
                             )
                           }),
                           _vm._v(" "),
-                          _vm._m(7)
+                          _vm._m(6)
                         ],
                         2
                       )
@@ -44824,7 +44883,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(8),
+              _vm._m(7),
               _vm._v(" "),
               _c("div", { staticClass: "container" }, [
                 _c(
@@ -45046,7 +45105,7 @@ var render = function() {
                         "div",
                         { staticClass: "right-side" },
                         [
-                          _vm._m(9),
+                          _vm._m(8),
                           _vm._v(" "),
                           _vm._l(_vm.home.latest_posts, function(ln) {
                             return _c(
@@ -45349,14 +45408,6 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "glyphicon glyphicon-chevron-right" })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("h2", [_vm._v("entertaiment")])
-    ])
   },
   function() {
     var _vm = this
