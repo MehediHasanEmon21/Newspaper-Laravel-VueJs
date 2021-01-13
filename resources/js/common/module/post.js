@@ -62,10 +62,26 @@ export const post = {
 
                 });
         },
+         allCommentsBackend(context) {
+            Axios.get('/admin/all-comments')
+                .then((result) => {
+                    context.commit('allComments', result.data.comments)
+                }).catch((err) => {
+
+                });
+        },
         categoriesPost(context,payload) {
             Axios.get('/all-categories-post/'+payload.slug+'?page='+payload.page)
                 .then((result) => {
                     context.commit('categoriesPost', result.data)
+                }).catch((err) => {
+
+                });
+        },
+        breakingPost(context) {
+            Axios.get('/admin/breaking-posts')
+                .then((result) => {
+                    context.commit('postList', result.data.posts)
                 }).catch((err) => {
 
                 });

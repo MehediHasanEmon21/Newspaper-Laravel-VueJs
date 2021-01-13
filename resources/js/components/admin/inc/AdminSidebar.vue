@@ -1,7 +1,7 @@
 <template>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <router-link :to="{ name: 'AdminDashboard' }" class="brand-link">
       <img
         src="dist/img/AdminLTELogo.png"
         alt="AdminLTE Logo"
@@ -9,7 +9,7 @@
         style="opacity: 0.8"
       />
       <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
+    </router-link>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -17,13 +17,13 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img
-            src="dist/img/user2-160x160.jpg"
+            src="/admin/images/default_avatar.png"
             class="img-circle elevation-2"
             alt="User Image"
           />
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ parsing_admin.name }}</a>
         </div>
       </div>
 
@@ -37,7 +37,7 @@
         >
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview">
             <router-link :to="{ name: 'AdminDashboard' }" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Dashboard</p>
@@ -45,7 +45,14 @@
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <router-link :to="{ name: 'BreakingPost' }" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>Breaking News</p>
+            </router-link>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="javascript:void()" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Category
@@ -107,6 +114,24 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item has-treeview">
+            <router-link :to="{ name: 'CommentList' }" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>Comment</p>
+            </router-link>
+          </li>
+          <li class="nav-item has-treeview">
+            <router-link :to="{ name: 'UserList' }" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>Users</p>
+            </router-link>
+          </li>
+          <li class="nav-item has-treeview">
+            <router-link :to="{ name: 'SettingList' }" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>Setting</p>
+            </router-link>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -118,6 +143,14 @@
 <script>
 export default {
   name: "AdminSidebar",
+  computed: {
+    admin() {
+      return localStorage.getItem("admin_data");
+    },
+    parsing_admin() {
+      return JSON.parse(this.admin);
+    },
+  },
 };
 </script>
 

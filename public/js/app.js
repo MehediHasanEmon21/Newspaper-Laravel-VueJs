@@ -63378,9 +63378,19 @@ var post = {
         context.commit('allComments', result.data.comments);
       })["catch"](function (err) {});
     },
+    allCommentsBackend: function allCommentsBackend(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/all-comments').then(function (result) {
+        context.commit('allComments', result.data.comments);
+      })["catch"](function (err) {});
+    },
     categoriesPost: function categoriesPost(context, payload) {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/all-categories-post/' + payload.slug + '?page=' + payload.page).then(function (result) {
         context.commit('categoriesPost', result.data);
+      })["catch"](function (err) {});
+    },
+    breakingPost: function breakingPost(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/breaking-posts').then(function (result) {
+        context.commit('postList', result.data.posts);
       })["catch"](function (err) {});
     }
   },
@@ -63405,6 +63415,45 @@ var post = {
 
 /***/ }),
 
+/***/ "./resources/js/common/module/setting.js":
+/*!***********************************************!*\
+  !*** ./resources/js/common/module/setting.js ***!
+  \***********************************************/
+/*! exports provided: setting */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setting", function() { return setting; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var setting = {
+  namespaced: true,
+  state: {
+    settings: {}
+  },
+  getters: {
+    settingList: function settingList(state) {
+      return state.settings;
+    }
+  },
+  actions: {
+    settingList: function settingList(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/all-settings').then(function (result) {
+        context.commit('settingList', result.data.settings);
+      })["catch"](function (err) {});
+    }
+  },
+  mutations: {
+    settingList: function settingList(state, payload) {
+      return state.settings = payload;
+    }
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/common/module/user.js":
 /*!********************************************!*\
   !*** ./resources/js/common/module/user.js ***!
@@ -63421,11 +63470,15 @@ __webpack_require__.r(__webpack_exports__);
 var user = {
   namespaced: true,
   state: {
-    user: {}
+    user: {},
+    users: {}
   },
   getters: {
     getUser: function getUser(state) {
       return state.user;
+    },
+    userList: function userList(state) {
+      return state.users;
     }
   },
   actions: {
@@ -63441,11 +63494,19 @@ var user = {
           user: ''
         });
       }
+    },
+    userList: function userList(context) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/all-users').then(function (result) {
+        context.commit('userList', result.data.users);
+      })["catch"](function (err) {});
     }
   },
   mutations: {
     getUser: function getUser(state, payload) {
       return state.user = payload;
+    },
+    userList: function userList(state, payload) {
+      return state.users = payload;
     }
   }
 };
@@ -63469,9 +63530,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _module_post__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./module/post */ "./resources/js/common/module/post.js");
 /* harmony import */ var _module_ads__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./module/ads */ "./resources/js/common/module/ads.js");
 /* harmony import */ var _module_user__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./module/user */ "./resources/js/common/module/user.js");
+/* harmony import */ var _module_setting__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./module/setting */ "./resources/js/common/module/setting.js");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
 
 
 
@@ -63481,7 +63544,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     category: _module_category__WEBPACK_IMPORTED_MODULE_2__["category"],
     post: _module_post__WEBPACK_IMPORTED_MODULE_3__["post"],
     ads: _module_ads__WEBPACK_IMPORTED_MODULE_4__["ads"],
-    user: _module_user__WEBPACK_IMPORTED_MODULE_5__["user"]
+    user: _module_user__WEBPACK_IMPORTED_MODULE_5__["user"],
+    setting: _module_setting__WEBPACK_IMPORTED_MODULE_6__["setting"]
   }
 });
 

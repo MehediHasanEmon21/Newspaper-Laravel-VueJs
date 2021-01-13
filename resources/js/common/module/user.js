@@ -3,12 +3,16 @@ import Axios from "axios"
 export const user = {
     namespaced: true,
     state: {
-        user: {}
+        user: {},
+        users: {}
     },
 
     getters: {
         getUser(state) {
             return state.user
+        },
+         userList(state) {
+            return state.users
         }
     },
 
@@ -33,6 +37,20 @@ export const user = {
 
         },
 
+        userList(context) {
+
+            Axios.get('/admin/all-users')
+            .then((result) => {
+                context.commit('userList', result.data.users)
+            }).catch((err) => {
+
+            });
+
+
+
+
+        },
+
 
 
     },
@@ -40,6 +58,9 @@ export const user = {
     mutations: {
         getUser(state, payload) {
             return state.user = payload
+        },
+        userList(state, payload) {
+            return state.users = payload
         }
     }
 

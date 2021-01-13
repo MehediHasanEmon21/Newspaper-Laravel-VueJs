@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\User;
+use App\Model\Comment;
 use App\Model\Advertisement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Model\BreakingPost;
+use App\Model\Setting;
 
 class AdsController extends Controller
 {
@@ -106,5 +111,67 @@ class AdsController extends Controller
         $ad->center = $request->center;
         $ad->top_bottom = $request->top_bottom;
         $ad->save();
+    }
+
+    public function all_comments()
+    {
+        $comments = Comment::orderBy('id', 'DESC')->get();
+        return response()->json([
+            'comments' => $comments,
+        ]);
+    }
+
+    public function comment_delete($id)
+    {
+
+        $comment = Comment::find($id);
+        $comment->delete();
+    }
+
+    public function all_users()
+    {
+        $users = User::orderBy('id', 'DESC')->get();
+        return response()->json([
+            'users' => $users,
+        ]);
+    }
+
+    public function search($term)
+    {
+        $posts = DB::table('posts')
+            ->where('title', 'LIKE', '' . $term . '%')
+            ->orderBy('id', 'desc')
+            ->limit(10)
+            ->get();
+        return response()->json($posts);
+    }
+
+    public function add_breaking_news(Request $request)
+    {
+        $bp = new BreakingPost();
+        $bp->post_id = $request->id;
+        $bp->save();
+    }
+
+    public function all_breaking_news()
+    {
+        $posts = BreakingPost::orderBy('id', 'DESC')->get();
+        return response()->json([
+            'posts' => $posts,
+        ]);
+    }
+
+    public function breaking_news_delete($id)
+    {
+        $bn = BreakingPost::find($id);
+        $bn->delete();
+    }
+
+    public function all_setting()
+    {
+        $settings = Setting::orderBy('id', 'DESC')->get();
+        return response()->json([
+            'settings' => $settings,
+        ]);
     }
 }

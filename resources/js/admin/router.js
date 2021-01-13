@@ -26,6 +26,18 @@ import AddsAdd from '../components/admin/ads/AddsAdd'
 import AddsEdit from '../components/admin/ads/AddsEdit'
 import AddsList from '../components/admin/ads/AddsList'
 
+//comment component
+import CommentList from '../components/admin/comment/CommentList'
+
+//user component
+import UserList from '../components/admin/user/UserList'
+
+//breaking component
+import BreakingPost from '../components/admin/breaking/BreakingPost'
+
+//setting component
+import SettingList from '../components/admin/setting/SettingList'
+
 import AdminLogin from '../components/admin/auth/AdminLogin'
 import AdminLogout from '../components/admin/auth/AdminLogout'
 
@@ -100,6 +112,37 @@ const router = new VueRouter({
             path: '/admin/ads-edit/:id',
             component: AddsEdit,
             name: 'AddsEdit'
+        },
+        //comment route
+
+        {
+            path: '/admin/comment-list',
+            component: CommentList,
+            name: 'CommentList'
+        },
+
+        //user route
+
+        {
+            path: '/admin/user-list',
+            component: UserList,
+            name: 'UserList'
+        },
+
+        //breaking post route
+
+        {
+            path: '/admin/breaking-post',
+            component: BreakingPost,
+            name: 'BreakingPost'
+        },
+
+        //settion route
+
+        {
+            path: '/admin/setting-list',
+            component: SettingList,
+            name: 'SettingList'
         },
 
     ]
