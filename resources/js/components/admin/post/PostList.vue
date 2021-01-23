@@ -32,14 +32,11 @@
                   >
                     Add <i class="fas fa-plus"></i>
                   </router-link>
-                  <button class="btn btn-primary">
-                    Reload <i class="fas fa-sync"></i>
-                  </button>
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                   <div class="row">
                     <div class="col-md-2">
                       <strong>Search By</strong>
@@ -54,7 +51,7 @@
                       <input type="text" class="form-control form-control-sm" />
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <table class="table table-bordered">
                   <thead>
                     <tr>

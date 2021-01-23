@@ -3208,15 +3208,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   data: function data() {
@@ -43296,7 +43287,7 @@ var render = function() {
     _c("section", { attrs: { id: "slide" } }, [
       _c("div", { staticClass: "s-bg slide" }, [
         _c("div", { staticClass: "container" }, [
-          _vm.posts.category_posts.data[0].category.name
+          _vm.posts.category_posts
             ? _c("h2", [
                 _vm._v(
                   "\n          " +
@@ -43333,84 +43324,104 @@ var render = function() {
       _c("div", { staticClass: "blogg" }, [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "row" }, [
-            _c(
-              "div",
-              { staticClass: "col-md-8" },
-              [
-                _vm._l(_vm.posts.category_posts.data, function(post) {
-                  return _c("div", { key: post.id, staticClass: "blog" }, [
-                    _c("a", { attrs: { href: "blog-details.html" } }, [
-                      _c("img", {
-                        attrs: {
-                          src: "/uploads/post/" + post.image,
-                          alt: "image"
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "b-content" }, [
-                      _c("div", { staticClass: "calender" }, [
-                        _vm._v(
-                          "\n                  " + _vm._s(post.date_fm2) + " "
-                        ),
-                        _c("span", [_vm._v(_vm._s(post.date_fm1))])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "b-txt" }, [
-                        _c("h3", [
-                          _c("a", { attrs: { href: "blog-details.html" } }, [
-                            _vm._v(_vm._s(post.title.slice(0, 30)) + "...")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "content" }, [
-                          _vm._v(
-                            "\n                    by\n                    "
-                          ),
-                          post.admin.name
-                            ? _c(
-                                "a",
-                                { staticClass: "admin", attrs: { href: "#" } },
-                                [_vm._v(_vm._s(post.admin.name))]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("|")]),
-                          _vm._v(" "),
-                          _c("a", { attrs: { href: "#" } }, [
-                            _vm._v("with " + _vm._s(post.comment) + " Comments")
-                          ]),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("|")])
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { domProps: { innerHTML: _vm._s(post.desc) } })
-                      ])
-                    ])
-                  ])
-                }),
-                _vm._v(" "),
-                _c(
+            _vm.posts.category_posts
+              ? _c(
                   "div",
+                  { staticClass: "col-md-8" },
                   [
-                    _vm.posts.category_posts.last_page > 1
-                      ? [
-                          _c("pagination-component", {
-                            attrs: { pagination: _vm.pagination, offset: 3 },
-                            on: {
-                              paginate: function($event) {
-                                return _vm.categoriesPost()
-                              }
+                    _vm._l(_vm.posts.category_posts.data, function(post) {
+                      return _c("div", { key: post.id, staticClass: "blog" }, [
+                        _c("a", { attrs: { href: "blog-details.html" } }, [
+                          _c("img", {
+                            attrs: {
+                              src: "/uploads/post/" + post.image,
+                              alt: "image"
                             }
                           })
-                        ]
-                      : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "b-content" }, [
+                          _c("div", { staticClass: "calender" }, [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(post.date_fm2) +
+                                " "
+                            ),
+                            _c("span", [_vm._v(_vm._s(post.date_fm1))])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "b-txt" }, [
+                            _c("h3", [
+                              _c(
+                                "a",
+                                { attrs: { href: "blog-details.html" } },
+                                [
+                                  _vm._v(
+                                    _vm._s(post.title.slice(0, 30)) + "..."
+                                  )
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "content" }, [
+                              _vm._v(
+                                "\n                    by\n                    "
+                              ),
+                              post.admin
+                                ? _c(
+                                    "a",
+                                    {
+                                      staticClass: "admin",
+                                      attrs: { href: "#" }
+                                    },
+                                    [_vm._v(_vm._s(post.admin.name))]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("|")]),
+                              _vm._v(" "),
+                              _c("a", { attrs: { href: "#" } }, [
+                                _vm._v(
+                                  "with " + _vm._s(post.comment) + " Comments"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("|")])
+                            ]),
+                            _vm._v(" "),
+                            _c("p", {
+                              domProps: { innerHTML: _vm._s(post.desc) }
+                            })
+                          ])
+                        ])
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      [
+                        _vm.posts.category_posts.last_page > 1
+                          ? [
+                              _c("pagination-component", {
+                                attrs: {
+                                  pagination: _vm.pagination,
+                                  offset: 3
+                                },
+                                on: {
+                                  paginate: function($event) {
+                                    return _vm.categoriesPost()
+                                  }
+                                }
+                              })
+                            ]
+                          : _vm._e()
+                      ],
+                      2
+                    )
                   ],
                   2
                 )
-              ],
-              2
-            ),
+              : _vm._e(),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-4" }, [
               _c("div", { staticClass: "right-side" }, [
@@ -43486,7 +43497,7 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        ln.category.name
+                        ln.category
                           ? _c("p", [
                               _vm._v(
                                 "\n                      " +
@@ -43725,278 +43736,299 @@ var render = function() {
       _c("div", { staticClass: "blogg" }, [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-8" }, [
-              _c("div", { staticClass: "blog" }, [
-                _c("img", {
-                  attrs: {
-                    src: "/uploads/post/" + _vm.single.post.image,
-                    alt: "image"
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "blog-c" }, [
-                _c("div", { staticClass: "calender" }, [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.single.post.date_fm2) +
-                      "\n                "
-                  ),
-                  _c("span", [_vm._v(_vm._s(_vm.single.post.date_fm1))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "b-txt" }, [
-                  _c("h3", [_vm._v(_vm._s(_vm.single.post.title))]),
+            _vm.single.post
+              ? _c("div", { staticClass: "col-md-8" }, [
+                  _c("div", { staticClass: "blog" }, [
+                    _c("img", {
+                      attrs: {
+                        src: "/uploads/post/" + _vm.single.post.image,
+                        alt: "image"
+                      }
+                    })
+                  ]),
                   _vm._v(" "),
-                  _c("p", { staticClass: "content" }, [
-                    _vm._v("\n                  by\n                  "),
-                    _vm.single.post.admin.name
-                      ? _c(
-                          "a",
-                          { staticClass: "admin", attrs: { href: "#" } },
-                          [_vm._v(_vm._s(_vm.single.post.admin.name))]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("|")]),
-                    _vm._v(" "),
-                    _c("a", { attrs: { href: "#" } }, [
+                  _c("div", { staticClass: "blog-c" }, [
+                    _c("div", { staticClass: "calender" }, [
                       _vm._v(
-                        "with " + _vm._s(_vm.single.post.comment) + " Comments"
-                      )
+                        "\n                " +
+                          _vm._s(_vm.single.post.date_fm2) +
+                          "\n                "
+                      ),
+                      _c("span", [_vm._v(_vm._s(_vm.single.post.date_fm1))])
                     ]),
                     _vm._v(" "),
-                    _c("span", [_vm._v("|")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", {
-                    staticClass: "b-single",
-                    domProps: { innerHTML: _vm._s(_vm.single.post.details) }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "b-menu" }, [
-                    _c("i", {
-                      staticClass: "fa fa-tag",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      _vm._l(_vm.single.categories, function(category) {
-                        return _c(
-                          "li",
-                          { key: category.id },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  to: {
-                                    name: "Categories",
-                                    params: { slug: category.slug }
-                                  }
-                                }
-                              },
-                              [_vm._v(_vm._s(category.name))]
+                    _c("div", { staticClass: "b-txt" }, [
+                      _c("h3", [_vm._v(_vm._s(_vm.single.post.title))]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "content" }, [
+                        _vm._v("\n                  by\n                  "),
+                        _vm.single.post
+                          ? _c(
+                              "a",
+                              { staticClass: "admin", attrs: { href: "#" } },
+                              [_vm._v(_vm._s(_vm.single.post.admin.name))]
                             )
-                          ],
-                          1
-                        )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("|")]),
+                        _vm._v(" "),
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(
+                            "with " +
+                              _vm._s(_vm.single.post.comment) +
+                              " Comments"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("|")])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "b-single",
+                        domProps: { innerHTML: _vm._s(_vm.single.post.details) }
                       }),
-                      0
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "share-post" }),
-                  _vm._v(" "),
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "rel-post" },
-                    [
-                      _c("h3", [_vm._v("RELATED POSTS")]),
                       _vm._v(" "),
-                      _vm._l(_vm.single.related_posts, function(post) {
-                        return _c(
-                          "div",
-                          { key: post.id, staticClass: "rel-img" },
-                          [
-                            _c("a", { attrs: { href: "#" } }, [
-                              _c("img", {
-                                attrs: {
-                                  src: "/uploads/post/" + post.image,
-                                  alt: "image"
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("h4", [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _vm._v(_vm._s(post.title.slice(0, 30)) + "...")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("p", [_vm._v(_vm._s(post.date_fm))])
-                          ]
-                        )
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "comments-area", attrs: { id: "comments" } },
-                    [
-                      _c("h5", { staticClass: "comments-title" }, [
-                        _vm._v("Comments on This Post")
-                      ]),
-                      _vm._v(" "),
-                      _c("ol", { staticClass: "comment-list" }, [
+                      _c("div", { staticClass: "b-menu" }, [
+                        _c("i", {
+                          staticClass: "fa fa-tag",
+                          attrs: { "aria-hidden": "true" }
+                        }),
+                        _vm._v(" "),
                         _c(
-                          "li",
-                          {
-                            staticClass: "comment depth-1 parent",
-                            attrs: { id: "comment-1" }
-                          },
-                          [
-                            _vm.comments
-                              ? _vm._l(_vm.comments, function(comment) {
-                                  return _c(
-                                    "article",
-                                    {
-                                      key: comment.id,
-                                      staticClass: "comment-body",
-                                      attrs: { id: "div-comment-1" }
-                                    },
-                                    [
-                                      _vm._m(2, true),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "comment-content" },
-                                        [
-                                          comment.user.name
-                                            ? _c(
-                                                "strong",
-                                                { staticClass: "fn" },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(comment.user.name)
-                                                  )
-                                                ]
-                                              )
-                                            : _vm._e(),
-                                          _vm._v(" "),
-                                          _c("p", [
-                                            _vm._v(
-                                              "\n                              " +
-                                                _vm._s(comment.text) +
-                                                "\n                              "
-                                            ),
-                                            _c("br"),
-                                            _c("span", [_vm._v("2 min")])
-                                          ])
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                })
-                              : _vm._e()
-                          ],
-                          2
+                          "ul",
+                          _vm._l(_vm.single.categories, function(category) {
+                            return _c(
+                              "li",
+                              { key: category.id },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    attrs: {
+                                      to: {
+                                        name: "Categories",
+                                        params: { slug: category.slug }
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(category.name))]
+                                )
+                              ],
+                              1
+                            )
+                          }),
+                          0
                         )
                       ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "share-post" }),
+                      _vm._v(" "),
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "rel-post" },
+                        [
+                          _c("h3", [_vm._v("RELATED POSTS")]),
+                          _vm._v(" "),
+                          _vm._l(_vm.single.related_posts, function(post) {
+                            return _c(
+                              "div",
+                              { key: post.id, staticClass: "rel-img" },
+                              [
+                                _c("a", { attrs: { href: "#" } }, [
+                                  _c("img", {
+                                    attrs: {
+                                      src: "/uploads/post/" + post.image,
+                                      alt: "image"
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("h4", [
+                                  _c("a", { attrs: { href: "#" } }, [
+                                    _vm._v(
+                                      _vm._s(post.title.slice(0, 30)) + "..."
+                                    )
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("p", [_vm._v(_vm._s(post.date_fm))])
+                              ]
+                            )
+                          })
+                        ],
+                        2
+                      ),
                       _vm._v(" "),
                       _c(
                         "div",
                         {
-                          staticClass: "comment-respond",
-                          attrs: { id: "respond" }
+                          staticClass: "comments-area",
+                          attrs: { id: "comments" }
                         },
                         [
-                          _c(
-                            "h4",
-                            {
-                              staticClass: "comment-reply-title",
-                              attrs: { id: "reply-title" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                      leave a comments\n                    "
-                              )
-                            ]
-                          ),
+                          _c("h5", { staticClass: "comments-title" }, [
+                            _vm._v("Comments on This Post")
+                          ]),
+                          _vm._v(" "),
+                          _c("ol", { staticClass: "comment-list" }, [
+                            _c(
+                              "li",
+                              {
+                                staticClass: "comment depth-1 parent",
+                                attrs: { id: "comment-1" }
+                              },
+                              [
+                                _vm.comments
+                                  ? _vm._l(_vm.comments, function(comment) {
+                                      return _c(
+                                        "article",
+                                        {
+                                          key: comment.id,
+                                          staticClass: "comment-body",
+                                          attrs: { id: "div-comment-1" }
+                                        },
+                                        [
+                                          _vm._m(2, true),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "comment-content" },
+                                            [
+                                              comment.user.name
+                                                ? _c(
+                                                    "strong",
+                                                    { staticClass: "fn" },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          comment.user.name
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              _c("p", [
+                                                _vm._v(
+                                                  "\n                              " +
+                                                    _vm._s(comment.text) +
+                                                    "\n                              "
+                                                ),
+                                                _c("br"),
+                                                _c("span", [_vm._v("2 min")])
+                                              ])
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  : _vm._e()
+                              ],
+                              2
+                            )
+                          ]),
                           _vm._v(" "),
                           _c(
-                            "form",
+                            "div",
                             {
-                              staticClass: "comment-form",
-                              attrs: { method: "post", id: "commentform" },
-                              on: {
-                                submit: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.addComment($event)
-                                }
-                              }
+                              staticClass: "comment-respond",
+                              attrs: { id: "respond" }
                             },
                             [
-                              _c("p", { staticClass: "comment-form-comment" }, [
-                                _c("label", { attrs: { for: "comment" } }, [
-                                  _vm._v("Comment")
-                                ]),
-                                _vm._v(" "),
-                                _c("textarea", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.form.text,
-                                      expression: "form.text"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    id: "comment",
-                                    rows: "7",
-                                    maxlength: "65525",
-                                    "aria-required": "true"
-                                  },
-                                  domProps: { value: _vm.form.text },
+                              _c(
+                                "h4",
+                                {
+                                  staticClass: "comment-reply-title",
+                                  attrs: { id: "reply-title" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                      leave a comments\n                    "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "form",
+                                {
+                                  staticClass: "comment-form",
+                                  attrs: { method: "post", id: "commentform" },
                                   on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.form,
-                                        "text",
-                                        $event.target.value
-                                      )
+                                    submit: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.addComment($event)
                                     }
                                   }
-                                }),
-                                _vm._v(" "),
-                                _vm.errors["text"]
-                                  ? _c(
-                                      "small",
-                                      { staticStyle: { color: "red" } },
-                                      [_vm._v(_vm._s(_vm.errors["text"][0]))]
-                                    )
-                                  : _vm._e()
-                              ]),
-                              _vm._v(" "),
-                              _vm._m(3)
+                                },
+                                [
+                                  _c(
+                                    "p",
+                                    { staticClass: "comment-form-comment" },
+                                    [
+                                      _c(
+                                        "label",
+                                        { attrs: { for: "comment" } },
+                                        [_vm._v("Comment")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("textarea", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.text,
+                                            expression: "form.text"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          id: "comment",
+                                          rows: "7",
+                                          maxlength: "65525",
+                                          "aria-required": "true"
+                                        },
+                                        domProps: { value: _vm.form.text },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "text",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _vm.errors["text"]
+                                        ? _c(
+                                            "small",
+                                            { staticStyle: { color: "red" } },
+                                            [
+                                              _vm._v(
+                                                _vm._s(_vm.errors["text"][0])
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._m(3)
+                                ]
+                              )
                             ]
                           )
                         ]
                       )
-                    ]
-                  )
+                    ])
+                  ])
                 ])
-              ])
-            ]),
+              : _vm._e(),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-4" }, [
               _c("div", { staticClass: "right-side" }, [
@@ -44068,7 +44100,7 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        ln.category.name
+                        ln.category
                           ? _c("p", [
                               _vm._v(
                                 "\n                      " +
@@ -44102,7 +44134,7 @@ var staticRenderFns = [
     return _c("section", { attrs: { id: "slide" } }, [
       _c("div", { staticClass: "s-bg slide" }, [
         _c("div", { staticClass: "container" }, [
-          _c("h2", [_vm._v("blog details content")])
+          _c("h2", [_vm._v("details content")])
         ])
       ]),
       _vm._v(" "),
@@ -44223,68 +44255,72 @@ var render = function() {
     _c("div", { staticClass: "main-menu-container" }),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
-      _c(
-        "div",
-        { staticClass: "bck-news" },
-        [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              attrs: {
-                to: {
-                  name: "Details",
-                  params: { slug: _vm.home.breaking_post.post.slug }
-                }
-              }
-            },
+      _vm.home.breaking_post
+        ? _c(
+            "div",
+            { staticClass: "bck-news" },
             [
-              _c("div", { staticClass: "col-md-10" }, [
-                _c(
-                  "div",
-                  { staticClass: "b-n" },
-                  [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: {
+                      name: "Details",
+                      params: { slug: _vm.home.breaking_post.post.slug }
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "col-md-10" }, [
                     _c(
-                      "marquee",
-                      { attrs: { behavior: "scroll", direction: "right" } },
+                      "div",
+                      { staticClass: "b-n" },
                       [
-                        _vm.home.breaking_post.post.title
-                          ? _c("p", [
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(_vm.home.breaking_post.post.title) +
-                                  "\n              "
-                              )
-                            ])
-                          : _vm._e()
-                      ]
+                        _c(
+                          "marquee",
+                          { attrs: { behavior: "scroll", direction: "right" } },
+                          [
+                            _vm.home.breaking_post.post.title
+                              ? _c("p", [
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(
+                                        _vm.home.breaking_post.post.title
+                                      ) +
+                                      "\n              "
+                                  )
+                                ])
+                              : _vm._e()
+                          ]
+                        )
+                      ],
+                      1
                     )
-                  ],
-                  1
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "add" }, [
+                _c(
+                  "a",
+                  { attrs: { href: "javascript:void()", target: "_blank" } },
+                  [
+                    _c("img", {
+                      staticClass: "img-responsive",
+                      attrs: {
+                        src: "/uploads/ads/" + _vm.home.top_ad.image,
+                        alt: "image"
+                      }
+                    })
+                  ]
                 )
               ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "add" }, [
-            _c(
-              "a",
-              { attrs: { href: "javascript:void()", target: "_blank" } },
-              [
-                _c("img", {
-                  staticClass: "img-responsive",
-                  attrs: {
-                    src: "/uploads/ads/" + _vm.home.top_ad.image,
-                    alt: "image"
-                  }
-                })
-              ]
-            )
-          ])
-        ],
-        1
-      )
+            ],
+            1
+          )
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("section", { attrs: { id: "slider" } }, [
@@ -44387,7 +44423,7 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c("a", { attrs: { href: "javascript:void()" } }, [
-                          post.category.name
+                          post.category
                             ? _c("h2", [
                                 _vm._v(
                                   "\n                      " +
@@ -44443,7 +44479,7 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        ln.category.name
+                        ln.category
                           ? _c("h5", [_vm._v(_vm._s(ln.category.name))])
                           : _vm._e()
                       ]
@@ -44472,7 +44508,7 @@ var render = function() {
                         attrs: { "aria-hidden": "true" }
                       }),
                       _vm._v(" "),
-                      ln.admin.name
+                      ln.admin
                         ? _c("a", { attrs: { href: "#" } }, [
                             _vm._v(_vm._s(ln.admin.name))
                           ])
@@ -44501,186 +44537,63 @@ var render = function() {
       _c("hr")
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "add2" }, [
-          _c("a", { attrs: { href: "javascript:void()" } }, [
-            _c("img", {
-              staticClass: "img-responsive",
-              attrs: {
-                src: "/uploads/ads/" + _vm.home.middle_ad.image,
-                alt: "image"
-              }
-            })
+    _vm.home.middle_ad
+      ? _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "add2" }, [
+              _c("a", { attrs: { href: "javascript:void()" } }, [
+                _c("img", {
+                  staticClass: "img-responsive",
+                  attrs: {
+                    src: "/uploads/ads/" + _vm.home.middle_ad.image,
+                    alt: "image"
+                  }
+                })
+              ])
+            ])
           ])
         ])
-      ])
-    ]),
+      : _vm._e(),
     _vm._v(" "),
     _c("section", { attrs: { id: "news" } }, [
       _c("div", { staticClass: "overlay" }, [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "section-padding" }, [
-              _c("div", { staticClass: "card-header-orange" }, [
-                _c("h1", { staticClass: "card-heading" }, [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.home.entertainment_posts[0].category.name) +
-                      "\n              "
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "row" },
-                _vm._l(_vm.home.entertainment_posts, function(ep) {
-                  return _c("div", { key: ep.id, staticClass: "col-md-6" }, [
-                    _c("div", { staticClass: "news-element" }, [
-                      _c("div", { staticClass: "n-box" }, [
-                        _c(
-                          "div",
-                          { staticClass: "videos" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  to: {
-                                    name: "Details",
-                                    params: { slug: ep.slug }
-                                  }
-                                }
-                              },
-                              [
-                                _c("img", {
-                                  staticClass: "img-responsive",
-                                  attrs: {
-                                    src: "/uploads/post/" + ep.image,
-                                    alt: "image"
-                                  }
-                                })
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "n-txt" },
-                          [
-                            _c(
-                              "h3",
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    attrs: {
-                                      to: {
-                                        name: "Details",
-                                        params: { slug: ep.slug }
-                                      }
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(ep.title) + "...")]
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("h5", [
-                              _c("i", {
-                                staticClass: "fa fa-clock-o",
-                                attrs: { "aria-hidden": "true" }
-                              }),
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(ep.date_fm) +
-                                  " "
-                              ),
-                              _c("span", [_vm._v(" | ")]),
-                              _c("i", {
-                                staticClass: "fa fa-user",
-                                attrs: { "aria-hidden": "true" }
-                              }),
-                              _vm._v(" "),
-                              ep.admin.name
-                                ? _c("a", { attrs: { href: "#" } }, [
-                                    _vm._v(_vm._s(ep.admin.name))
-                                  ])
-                                : _vm._e()
-                            ]),
-                            _vm._v(" "),
-                            _c("p", {
-                              domProps: { innerHTML: _vm._s(ep.desc) }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  to: {
-                                    name: "Details",
-                                    params: { slug: ep.slug }
-                                  }
-                                }
-                              },
-                              [
-                                _c("button", { staticClass: "custom-btn" }, [
-                                  _vm._v(
-                                    "\n                          read more\n                        "
-                                  )
-                                ])
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ])
+            _vm.home.entertainment_posts
+              ? _c("div", { staticClass: "section-padding" }, [
+                  _c("div", { staticClass: "card-header-orange" }, [
+                    _c("h1", { staticClass: "card-heading" }, [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(
+                            _vm.home.entertainment_posts[0].category.name
+                          ) +
+                          "\n              "
+                      )
                     ])
-                  ])
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "container" }, [
-                _c(
-                  "div",
-                  { staticClass: "row row-offcanvas row-offcanvas-right" },
-                  [
-                    _c("div", { staticClass: "col-xs-12 col-sm-9" }, [
-                      _c("div", { staticClass: "category" }, [
-                        _c("h1", { staticClass: "category" }, [
-                          _vm._v(
-                            "\n                      " +
-                              _vm._s(_vm.home.sport_posts[0].category.name) +
-                              "\n                    "
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "row" },
+                    _vm._l(_vm.home.entertainment_posts, function(ep) {
+                      return _c(
                         "div",
-                        { staticClass: "row" },
-                        _vm._l(_vm.home.sport_posts, function(sp) {
-                          return _c(
-                            "div",
-                            { key: sp.id, staticClass: "col-md-4" },
-                            [
+                        { key: ep.id, staticClass: "col-md-6" },
+                        [
+                          _c("div", { staticClass: "news-element" }, [
+                            _c("div", { staticClass: "n-box" }, [
                               _c(
                                 "div",
-                                { staticClass: "en-item" },
+                                { staticClass: "videos" },
                                 [
                                   _c(
                                     "router-link",
                                     {
-                                      staticClass: "en-img",
                                       attrs: {
                                         to: {
                                           name: "Details",
-                                          params: { slug: sp.slug }
+                                          params: { slug: ep.slug }
                                         }
                                       }
                                     },
@@ -44688,97 +44601,22 @@ var render = function() {
                                       _c("img", {
                                         staticClass: "img-responsive",
                                         attrs: {
-                                          src: "/uploads/post/" + sp.image,
-                                          alt: "en-img1"
+                                          src: "/uploads/post/" + ep.image,
+                                          alt: "image"
                                         }
-                                      }),
-                                      _vm._v(" "),
-                                      sp.category.name
-                                        ? _c("h5", [
-                                            _vm._v(
-                                              "\n                            " +
-                                                _vm._s(sp.category.name) +
-                                                "\n                          "
-                                            )
-                                          ])
-                                        : _vm._e()
+                                      })
                                     ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "Details",
-                                          params: { slug: sp.slug }
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _c("h3", [
-                                        _vm._v(
-                                          _vm._s(sp.title.slice(0, 30)) + "..."
-                                        )
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("p", {
-                                    domProps: { innerHTML: _vm._s(sp.desc) }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("h6", [
-                                    _vm._v(
-                                      "\n                          Posted by"
-                                    ),
-                                    _c("i", {
-                                      staticClass: "fa fa-user",
-                                      attrs: { "aria-hidden": "true" }
-                                    }),
-                                    _vm._v(" "),
-                                    sp.admin.name
-                                      ? _c("a", { attrs: { href: "#" } }, [
-                                          _vm._v(_vm._s(sp.admin.name))
-                                        ])
-                                      : _vm._e(),
-                                    _c("span", [_vm._v(" | ")]),
-                                    _c("i", {
-                                      staticClass: "fa fa-clock-o",
-                                      attrs: { "aria-hidden": "true" }
-                                    }),
-                                    _vm._v(
-                                      "\n                          " +
-                                        _vm._s(sp.date_fm) +
-                                        "\n                        "
-                                    )
-                                  ])
+                                  )
                                 ],
                                 1
-                              )
-                            ]
-                          )
-                        }),
-                        0
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "section-padding" }, [
-                      _c(
-                        "div",
-                        { staticClass: "right-side" },
-                        [
-                          _vm._m(5),
-                          _vm._v(" "),
-                          _vm._l(_vm.home.popular_posts, function(pp) {
-                            return _c(
-                              "div",
-                              { key: pp.id, staticClass: "fp" },
-                              [
-                                _c("div", { staticClass: "FP" }, [
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "n-txt" },
+                                [
                                   _c(
-                                    "div",
-                                    { staticClass: "fp-img" },
+                                    "h3",
                                     [
                                       _c(
                                         "router-link",
@@ -44786,233 +44624,732 @@ var render = function() {
                                           attrs: {
                                             to: {
                                               name: "Details",
-                                              params: { slug: pp.post.slug }
+                                              params: { slug: ep.slug }
                                             }
                                           }
                                         },
-                                        [
-                                          pp.post.image
-                                            ? _c("img", {
-                                                attrs: {
-                                                  src:
-                                                    "/uploads/post/" +
-                                                    pp.post.image,
-                                                  alt: "image"
-                                                }
-                                              })
-                                            : _vm._e()
-                                        ]
+                                        [_vm._v(_vm._s(ep.title) + "...")]
                                       )
                                     ],
                                     1
                                   ),
                                   _vm._v(" "),
-                                  _c("div", { staticClass: "fp-txt" }, [
+                                  _c("h5", [
+                                    _c("i", {
+                                      staticClass: "fa fa-clock-o",
+                                      attrs: { "aria-hidden": "true" }
+                                    }),
+                                    _vm._v(
+                                      "\n                        " +
+                                        _vm._s(ep.date_fm) +
+                                        " "
+                                    ),
+                                    _c("span", [_vm._v(" | ")]),
+                                    _c("i", {
+                                      staticClass: "fa fa-user",
+                                      attrs: { "aria-hidden": "true" }
+                                    }),
+                                    _vm._v(" "),
+                                    ep.admin
+                                      ? _c("a", { attrs: { href: "#" } }, [
+                                          _vm._v(_vm._s(ep.admin.name))
+                                        ])
+                                      : _vm._e()
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", {
+                                    domProps: { innerHTML: _vm._s(ep.desc) }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "router-link",
+                                    {
+                                      attrs: {
+                                        to: {
+                                          name: "Details",
+                                          params: { slug: ep.slug }
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "button",
+                                        { staticClass: "custom-btn" },
+                                        [
+                                          _vm._v(
+                                            "\n                          read more\n                        "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          ])
+                        ]
+                      )
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "container" }, [
+                    _c(
+                      "div",
+                      { staticClass: "row row-offcanvas row-offcanvas-right" },
+                      [
+                        _vm.home.sport_posts
+                          ? _c("div", { staticClass: "col-xs-12 col-sm-9" }, [
+                              _c("div", { staticClass: "category" }, [
+                                _c("h1", { staticClass: "category" }, [
+                                  _vm._v(
+                                    "\n                      " +
+                                      _vm._s(
+                                        _vm.home.sport_posts[0].category.name
+                                      ) +
+                                      "\n                    "
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "row" },
+                                _vm._l(_vm.home.sport_posts, function(sp) {
+                                  return _c(
+                                    "div",
+                                    { key: sp.id, staticClass: "col-md-4" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "en-item" },
+                                        [
+                                          _c(
+                                            "router-link",
+                                            {
+                                              staticClass: "en-img",
+                                              attrs: {
+                                                to: {
+                                                  name: "Details",
+                                                  params: { slug: sp.slug }
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("img", {
+                                                staticClass: "img-responsive",
+                                                attrs: {
+                                                  src:
+                                                    "/uploads/post/" + sp.image,
+                                                  alt: "en-img1"
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              sp.category
+                                                ? _c("h5", [
+                                                    _vm._v(
+                                                      "\n                            " +
+                                                        _vm._s(
+                                                          sp.category.name
+                                                        ) +
+                                                        "\n                          "
+                                                    )
+                                                  ])
+                                                : _vm._e()
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "router-link",
+                                            {
+                                              attrs: {
+                                                to: {
+                                                  name: "Details",
+                                                  params: { slug: sp.slug }
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("h3", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    sp.title.slice(0, 30)
+                                                  ) + "..."
+                                                )
+                                              ])
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("p", {
+                                            domProps: {
+                                              innerHTML: _vm._s(sp.desc)
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("h6", [
+                                            _vm._v(
+                                              "\n                          Posted by"
+                                            ),
+                                            _c("i", {
+                                              staticClass: "fa fa-user",
+                                              attrs: { "aria-hidden": "true" }
+                                            }),
+                                            _vm._v(" "),
+                                            sp.admin
+                                              ? _c(
+                                                  "a",
+                                                  { attrs: { href: "#" } },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(sp.admin.name)
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e(),
+                                            _c("span", [_vm._v(" | ")]),
+                                            _c("i", {
+                                              staticClass: "fa fa-clock-o",
+                                              attrs: { "aria-hidden": "true" }
+                                            }),
+                                            _vm._v(
+                                              "\n                          " +
+                                                _vm._s(sp.date_fm) +
+                                                "\n                        "
+                                            )
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                }),
+                                0
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "section-padding" }, [
+                          _c(
+                            "div",
+                            { staticClass: "right-side" },
+                            [
+                              _vm._m(5),
+                              _vm._v(" "),
+                              _vm._l(_vm.home.popular_posts, function(pp) {
+                                return _c(
+                                  "div",
+                                  { key: pp.id, staticClass: "fp" },
+                                  [
+                                    _c("div", { staticClass: "FP" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "fp-img" },
+                                        [
+                                          _c(
+                                            "router-link",
+                                            {
+                                              attrs: {
+                                                to: {
+                                                  name: "Details",
+                                                  params: { slug: pp.post.slug }
+                                                }
+                                              }
+                                            },
+                                            [
+                                              pp.post.image
+                                                ? _c("img", {
+                                                    attrs: {
+                                                      src:
+                                                        "/uploads/post/" +
+                                                        pp.post.image,
+                                                      alt: "image"
+                                                    }
+                                                  })
+                                                : _vm._e()
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "fp-txt" }, [
+                                        _c(
+                                          "h4",
+                                          { staticClass: "rp-title" },
+                                          [
+                                            pp.post.title
+                                              ? _c(
+                                                  "router-link",
+                                                  {
+                                                    attrs: {
+                                                      to: {
+                                                        name: "Details",
+                                                        params: {
+                                                          slug: pp.post.slug
+                                                        }
+                                                      },
+                                                      href: "#"
+                                                    }
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        pp.post.title.slice(
+                                                          0,
+                                                          20
+                                                        )
+                                                      ) + "..."
+                                                    )
+                                                  ]
+                                                )
+                                              : _vm._e()
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c("p", [
+                                          _c("i", {
+                                            staticClass: "fa fa-clock-o",
+                                            attrs: { "aria-hidden": "true" }
+                                          }),
+                                          _vm._v(
+                                            "\n                            " +
+                                              _vm._s(pp.date_fm) +
+                                              "\n                          "
+                                          )
+                                        ])
+                                      ])
+                                    ])
+                                  ]
+                                )
+                              }),
+                              _vm._v(" "),
+                              _vm._m(6)
+                            ],
+                            2
+                          )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("hr")
+                  ]),
+                  _vm._v(" "),
+                  _vm.home.center_ad
+                    ? _c("div", { staticClass: "container" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("div", { staticClass: "add2" }, [
+                            _c("a", { attrs: { href: "javascript:void()" } }, [
+                              _c("img", {
+                                staticClass: "img-responsive",
+                                attrs: {
+                                  src:
+                                    "/uploads/ads/" + _vm.home.center_ad.image,
+                                  alt: "image"
+                                }
+                              })
+                            ])
+                          ])
+                        ])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._m(7),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "container" }, [
+                    _c(
+                      "div",
+                      { staticClass: "row row-offcanvas row-offcanvas-right" },
+                      [
+                        _vm.home.international_big
+                          ? _c("div", { staticClass: "col-xs-12 col-sm-9" }, [
+                              _c("div", { staticClass: "category" }, [
+                                _c("h1", { staticClass: "category" }, [
+                                  _vm._v(
+                                    "\n                      " +
+                                      _vm._s(
+                                        _vm.home.international_big.category.name
+                                      ) +
+                                      "\n                    "
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "row" },
+                                [
+                                  _c("div", { staticClass: "col-md-8" }, [
                                     _c(
-                                      "h4",
-                                      { staticClass: "rp-title" },
+                                      "div",
+                                      { staticClass: "en-item" },
                                       [
-                                        pp.post.title
-                                          ? _c(
+                                        _c(
+                                          "router-link",
+                                          {
+                                            staticClass: "en-img",
+                                            attrs: {
+                                              to: {
+                                                name: "Details",
+                                                params: {
+                                                  slug:
+                                                    _vm.home.international_big
+                                                      .slug
+                                                }
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("img", {
+                                              staticClass: "img-responsive",
+                                              attrs: {
+                                                src:
+                                                  "/uploads/post/" +
+                                                  _vm.home.international_big
+                                                    .image,
+                                                alt: "en-img1"
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "router-link",
+                                          {
+                                            attrs: {
+                                              to: {
+                                                name: "Details",
+                                                params: {
+                                                  slug:
+                                                    _vm.home.international_big
+                                                      .slug
+                                                }
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("h3", [
+                                              _vm._v(
+                                                "\n                            " +
+                                                  _vm._s(
+                                                    _vm.home.international_big.title.slice(
+                                                      0,
+                                                      30
+                                                    )
+                                                  ) +
+                                                  "...\n                          "
+                                              )
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("p", {
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.home.international_big.desc
+                                            )
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("h6", [
+                                          _vm._v(
+                                            "\n                          Posted by"
+                                          ),
+                                          _c("i", {
+                                            staticClass: "fa fa-user",
+                                            attrs: { "aria-hidden": "true" }
+                                          }),
+                                          _vm._v(" "),
+                                          _vm.home.international_big
+                                            ? _c(
+                                                "a",
+                                                { attrs: { href: "#" } },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.home.international_big
+                                                        .admin.name
+                                                    )
+                                                  )
+                                                ]
+                                              )
+                                            : _vm._e(),
+                                          _c("span", [_vm._v(" | ")]),
+                                          _c("i", {
+                                            staticClass: "fa fa-clock-o",
+                                            attrs: { "aria-hidden": "true" }
+                                          }),
+                                          _vm._v(
+                                            "\n                          " +
+                                              _vm._s(
+                                                _vm.home.international_big
+                                                  .date_fm
+                                              ) +
+                                              "\n                        "
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.home.international_posts, function(
+                                    ip
+                                  ) {
+                                    return _c(
+                                      "div",
+                                      { key: ip.id, staticClass: "col-md-4" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "en-item" },
+                                          [
+                                            _c(
+                                              "router-link",
+                                              {
+                                                staticClass: "en-img",
+                                                attrs: {
+                                                  to: {
+                                                    name: "Details",
+                                                    params: { slug: ip.slug }
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("img", {
+                                                  staticClass: "img-responsive",
+                                                  attrs: {
+                                                    src:
+                                                      "/uploads/post/" +
+                                                      ip.image,
+                                                    alt: "en-img1"
+                                                  }
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
                                               "router-link",
                                               {
                                                 attrs: {
                                                   to: {
                                                     name: "Details",
-                                                    params: {
-                                                      slug: pp.post.slug
-                                                    }
-                                                  },
-                                                  href: "#"
+                                                    params: { slug: ip.slug }
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("h3", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      ip.title.slice(0, 30)
+                                                    ) + "..."
+                                                  )
+                                                ])
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("p", {
+                                              domProps: {
+                                                innerHTML: _vm._s(ip.desc)
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("h6", [
+                                              _vm._v(
+                                                "\n                          Posted by"
+                                              ),
+                                              _c("i", {
+                                                staticClass: "fa fa-user",
+                                                attrs: { "aria-hidden": "true" }
+                                              }),
+                                              _vm._v(" "),
+                                              ip.admin
+                                                ? _c(
+                                                    "a",
+                                                    { attrs: { href: "#" } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(ip.admin.name)
+                                                      )
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _c("span", [_vm._v(" | ")]),
+                                              _c("i", {
+                                                staticClass: "fa fa-clock-o",
+                                                attrs: { "aria-hidden": "true" }
+                                              }),
+                                              _vm._v(
+                                                "\n                          " +
+                                                  _vm._s(ip.date_fm) +
+                                                  "\n                        "
+                                              )
+                                            ])
+                                          ],
+                                          1
+                                        )
+                                      ]
+                                    )
+                                  })
+                                ],
+                                2
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "section-padding" }, [
+                          _c(
+                            "div",
+                            { staticClass: "right-side" },
+                            [
+                              _vm._m(8),
+                              _vm._v(" "),
+                              _vm._l(_vm.home.latest_posts, function(ln) {
+                                return _c(
+                                  "div",
+                                  { key: ln.id, staticClass: "fp" },
+                                  [
+                                    _c("div", { staticClass: "FP" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "fp-img" },
+                                        [
+                                          _c(
+                                            "router-link",
+                                            {
+                                              attrs: {
+                                                to: {
+                                                  name: "Details",
+                                                  params: { slug: ln.slug }
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("img", {
+                                                attrs: {
+                                                  src:
+                                                    "/uploads/post/" + ln.image,
+                                                  alt: "image"
+                                                }
+                                              })
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "fp-txt" }, [
+                                        _c(
+                                          "h4",
+                                          { staticClass: "rp-title" },
+                                          [
+                                            _c(
+                                              "router-link",
+                                              {
+                                                attrs: {
+                                                  to: {
+                                                    name: "Details",
+                                                    params: { slug: ln.slug }
+                                                  }
                                                 }
                                               },
                                               [
                                                 _vm._v(
                                                   _vm._s(
-                                                    pp.post.title.slice(0, 20)
+                                                    ln.title.slice(0, 20)
                                                   ) + "..."
                                                 )
                                               ]
                                             )
-                                          : _vm._e()
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c("p", [
-                                      _c("i", {
-                                        staticClass: "fa fa-clock-o",
-                                        attrs: { "aria-hidden": "true" }
-                                      }),
-                                      _vm._v(
-                                        "\n                            " +
-                                          _vm._s(pp.date_fm) +
-                                          "\n                          "
-                                      )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c("p", [
+                                          _c("i", {
+                                            staticClass: "fa fa-clock-o",
+                                            attrs: { "aria-hidden": "true" }
+                                          }),
+                                          _vm._v(
+                                            "\n                            " +
+                                              _vm._s(ln.date_fm) +
+                                              "\n                          "
+                                          )
+                                        ])
+                                      ])
                                     ])
-                                  ])
-                                ])
-                              ]
-                            )
-                          }),
-                          _vm._v(" "),
-                          _vm._m(6)
-                        ],
-                        2
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c("hr")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "container" }, [
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c("div", { staticClass: "add2" }, [
-                    _c("a", { attrs: { href: "javascript:void()" } }, [
-                      _c("img", {
-                        staticClass: "img-responsive",
-                        attrs: {
-                          src: "/uploads/ads/" + _vm.home.center_ad.image,
-                          alt: "image"
-                        }
-                      })
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(7),
-              _vm._v(" "),
-              _c("div", { staticClass: "container" }, [
-                _c(
-                  "div",
-                  { staticClass: "row row-offcanvas row-offcanvas-right" },
-                  [
-                    _c("div", { staticClass: "col-xs-12 col-sm-9" }, [
-                      _c("div", { staticClass: "category" }, [
-                        _c("h1", { staticClass: "category" }, [
-                          _vm._v(
-                            "\n                      " +
-                              _vm._s(_vm.home.international_big.category.name) +
-                              "\n                    "
+                                  ]
+                                )
+                              })
+                            ],
+                            2
                           )
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "row" },
-                        [
-                          _c("div", { staticClass: "col-md-8" }, [
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("hr")
+                  ]),
+                  _vm._v(" "),
+                  _vm.home.top_bottom
+                    ? _c("div", { staticClass: "container" }, [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c("div", { staticClass: "add2" }, [
                             _c(
-                              "div",
-                              { staticClass: "en-item" },
+                              "a",
+                              {
+                                attrs: {
+                                  href: _vm.home.top_bottom.link,
+                                  target: "_blank"
+                                }
+                              },
                               [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "en-img",
-                                    attrs: {
-                                      to: {
-                                        name: "Details",
-                                        params: {
-                                          slug: _vm.home.international_big.slug
-                                        }
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("img", {
-                                      staticClass: "img-responsive",
-                                      attrs: {
-                                        src:
-                                          "/uploads/post/" +
-                                          _vm.home.international_big.image,
-                                        alt: "en-img1"
-                                      }
-                                    })
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "router-link",
-                                  {
-                                    attrs: {
-                                      to: {
-                                        name: "Details",
-                                        params: {
-                                          slug: _vm.home.international_big.slug
-                                        }
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("h3", [
-                                      _vm._v(
-                                        "\n                            " +
-                                          _vm._s(
-                                            _vm.home.international_big.title.slice(
-                                              0,
-                                              30
-                                            )
-                                          ) +
-                                          "...\n                          "
-                                      )
-                                    ])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("p", {
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      _vm.home.international_big.desc
-                                    )
+                                _c("img", {
+                                  staticClass: "img-responsive",
+                                  attrs: {
+                                    src:
+                                      "/uploads/ads/" +
+                                      _vm.home.top_bottom.image,
+                                    alt: "image"
                                   }
-                                }),
-                                _vm._v(" "),
-                                _c("h6", [
-                                  _vm._v(
-                                    "\n                          Posted by"
-                                  ),
-                                  _c("i", {
-                                    staticClass: "fa fa-user",
-                                    attrs: { "aria-hidden": "true" }
-                                  }),
-                                  _vm._v(" "),
-                                  _vm.home.international_big.admin.name
-                                    ? _c("a", { attrs: { href: "#" } }, [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.home.international_big.admin
-                                              .name
-                                          )
-                                        )
-                                      ])
-                                    : _vm._e(),
-                                  _c("span", [_vm._v(" | ")]),
-                                  _c("i", {
-                                    staticClass: "fa fa-clock-o",
-                                    attrs: { "aria-hidden": "true" }
-                                  }),
-                                  _vm._v(
-                                    "\n                          " +
-                                      _vm._s(
-                                        _vm.home.international_big.date_fm
-                                      ) +
-                                      "\n                        "
-                                  )
-                                ])
-                              ],
-                              1
+                                })
+                              ]
                             )
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.home.international_posts, function(ip) {
+                          ])
+                        ])
+                      ])
+                    : _vm._e()
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "container" }, [
+              _c(
+                "div",
+                { staticClass: "row row-offcanvas row-offcanvas-right" },
+                [
+                  _vm.home.bangladesh_posts
+                    ? _c("div", { staticClass: "col-xs-12 col-sm-12" }, [
+                        _c("div", { staticClass: "category12" }, [
+                          _c("h1", { staticClass: "category12" }, [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(
+                                  _vm.home.bangladesh_posts[0].category.name
+                                ) +
+                                "\n                  "
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "row" },
+                          _vm._l(_vm.home.bangladesh_posts, function(bp) {
                             return _c(
                               "div",
-                              { key: ip.id, staticClass: "col-md-4" },
+                              { key: bp.id, staticClass: "col-md-4" },
                               [
                                 _c(
                                   "div",
@@ -45025,7 +45362,7 @@ var render = function() {
                                         attrs: {
                                           to: {
                                             name: "Details",
-                                            params: { slug: ip.slug }
+                                            params: { slug: bp.slug }
                                           }
                                         }
                                       },
@@ -45033,10 +45370,20 @@ var render = function() {
                                         _c("img", {
                                           staticClass: "img-responsive",
                                           attrs: {
-                                            src: "/uploads/post/" + ip.image,
+                                            src: "/uploads/post/" + bp.image,
                                             alt: "en-img1"
                                           }
-                                        })
+                                        }),
+                                        _vm._v(" "),
+                                        bp.category
+                                          ? _c("h5", [
+                                              _vm._v(
+                                                "\n                          " +
+                                                  _vm._s(bp.category.name) +
+                                                  "\n                        "
+                                              )
+                                            ])
+                                          : _vm._e()
                                       ]
                                     ),
                                     _vm._v(" "),
@@ -45046,14 +45393,14 @@ var render = function() {
                                         attrs: {
                                           to: {
                                             name: "Details",
-                                            params: { slug: ip.slug }
+                                            params: { slug: bp.slug }
                                           }
                                         }
                                       },
                                       [
                                         _c("h3", [
                                           _vm._v(
-                                            _vm._s(ip.title.slice(0, 30)) +
+                                            _vm._s(bp.title.slice(0, 30)) +
                                               "..."
                                           )
                                         ])
@@ -45061,21 +45408,21 @@ var render = function() {
                                     ),
                                     _vm._v(" "),
                                     _c("p", {
-                                      domProps: { innerHTML: _vm._s(ip.desc) }
+                                      domProps: { innerHTML: _vm._s(bp.desc) }
                                     }),
                                     _vm._v(" "),
                                     _c("h6", [
                                       _vm._v(
-                                        "\n                          Posted by"
+                                        "\n                        Posted by"
                                       ),
                                       _c("i", {
                                         staticClass: "fa fa-user",
                                         attrs: { "aria-hidden": "true" }
                                       }),
                                       _vm._v(" "),
-                                      ip.admin.name
+                                      bp.admin
                                         ? _c("a", { attrs: { href: "#" } }, [
-                                            _vm._v(_vm._s(ip.admin.name))
+                                            _vm._v(_vm._s(bp.admin.name))
                                           ])
                                         : _vm._e(),
                                       _c("span", [_vm._v(" | ")]),
@@ -45084,9 +45431,9 @@ var render = function() {
                                         attrs: { "aria-hidden": "true" }
                                       }),
                                       _vm._v(
-                                        "\n                          " +
-                                          _vm._s(ip.date_fm) +
-                                          "\n                        "
+                                        "\n                        " +
+                                          _vm._s(bp.date_fm) +
+                                          "\n                      "
                                       )
                                     ])
                                   ],
@@ -45094,245 +45441,11 @@ var render = function() {
                                 )
                               ]
                             )
-                          })
-                        ],
-                        2
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "section-padding" }, [
-                      _c(
-                        "div",
-                        { staticClass: "right-side" },
-                        [
-                          _vm._m(8),
-                          _vm._v(" "),
-                          _vm._l(_vm.home.latest_posts, function(ln) {
-                            return _c(
-                              "div",
-                              { key: ln.id, staticClass: "fp" },
-                              [
-                                _c("div", { staticClass: "FP" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "fp-img" },
-                                    [
-                                      _c(
-                                        "router-link",
-                                        {
-                                          attrs: {
-                                            to: {
-                                              name: "Details",
-                                              params: { slug: ln.slug }
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("img", {
-                                            attrs: {
-                                              src: "/uploads/post/" + ln.image,
-                                              alt: "image"
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "fp-txt" }, [
-                                    _c(
-                                      "h4",
-                                      { staticClass: "rp-title" },
-                                      [
-                                        _c(
-                                          "router-link",
-                                          {
-                                            attrs: {
-                                              to: {
-                                                name: "Details",
-                                                params: { slug: ln.slug }
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              _vm._s(ln.title.slice(0, 20)) +
-                                                "..."
-                                            )
-                                          ]
-                                        )
-                                      ],
-                                      1
-                                    ),
-                                    _vm._v(" "),
-                                    _c("p", [
-                                      _c("i", {
-                                        staticClass: "fa fa-clock-o",
-                                        attrs: { "aria-hidden": "true" }
-                                      }),
-                                      _vm._v(
-                                        "\n                            " +
-                                          _vm._s(ln.date_fm) +
-                                          "\n                          "
-                                      )
-                                    ])
-                                  ])
-                                ])
-                              ]
-                            )
-                          })
-                        ],
-                        2
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c("hr")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "container" }, [
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c("div", { staticClass: "add2" }, [
-                    _c(
-                      "a",
-                      {
-                        attrs: {
-                          href: _vm.home.top_bottom.link,
-                          target: "_blank"
-                        }
-                      },
-                      [
-                        _c("img", {
-                          staticClass: "img-responsive",
-                          attrs: {
-                            src: "/uploads/ads/" + _vm.home.top_bottom.image,
-                            alt: "image"
-                          }
-                        })
-                      ]
-                    )
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c(
-                "div",
-                { staticClass: "row row-offcanvas row-offcanvas-right" },
-                [
-                  _c("div", { staticClass: "col-xs-12 col-sm-12" }, [
-                    _c("div", { staticClass: "category12" }, [
-                      _c("h1", { staticClass: "category12" }, [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(_vm.home.bangladesh_posts[0].category.name) +
-                            "\n                  "
+                          }),
+                          0
                         )
                       ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "row" },
-                      _vm._l(_vm.home.bangladesh_posts, function(bp) {
-                        return _c(
-                          "div",
-                          { key: bp.id, staticClass: "col-md-4" },
-                          [
-                            _c(
-                              "div",
-                              { staticClass: "en-item" },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "en-img",
-                                    attrs: {
-                                      to: {
-                                        name: "Details",
-                                        params: { slug: bp.slug }
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("img", {
-                                      staticClass: "img-responsive",
-                                      attrs: {
-                                        src: "/uploads/post/" + bp.image,
-                                        alt: "en-img1"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    bp.category.name
-                                      ? _c("h5", [
-                                          _vm._v(
-                                            "\n                          " +
-                                              _vm._s(bp.category.name) +
-                                              "\n                        "
-                                          )
-                                        ])
-                                      : _vm._e()
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "router-link",
-                                  {
-                                    attrs: {
-                                      to: {
-                                        name: "Details",
-                                        params: { slug: bp.slug }
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("h3", [
-                                      _vm._v(
-                                        _vm._s(bp.title.slice(0, 30)) + "..."
-                                      )
-                                    ])
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("p", {
-                                  domProps: { innerHTML: _vm._s(bp.desc) }
-                                }),
-                                _vm._v(" "),
-                                _c("h6", [
-                                  _vm._v("\n                        Posted by"),
-                                  _c("i", {
-                                    staticClass: "fa fa-user",
-                                    attrs: { "aria-hidden": "true" }
-                                  }),
-                                  _vm._v(" "),
-                                  bp.admin.name
-                                    ? _c("a", { attrs: { href: "#" } }, [
-                                        _vm._v(_vm._s(bp.admin.name))
-                                      ])
-                                    : _vm._e(),
-                                  _c("span", [_vm._v(" | ")]),
-                                  _c("i", {
-                                    staticClass: "fa fa-clock-o",
-                                    attrs: { "aria-hidden": "true" }
-                                  }),
-                                  _vm._v(
-                                    "\n                        " +
-                                      _vm._s(bp.date_fm) +
-                                      "\n                      "
-                                  )
-                                ])
-                              ],
-                              1
-                            )
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ])
+                    : _vm._e()
                 ]
               ),
               _vm._v(" "),
@@ -64464,7 +64577,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('public-master', __webpack_
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
-  linkActiveClass: 'active',
   routes: [{
     path: '/',
     component: _components_public_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"],

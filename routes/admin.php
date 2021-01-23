@@ -43,6 +43,8 @@ Route::get('/all-settings', 'Admin\AdsController@all_setting');
 Route::get('/edit-setting/{id}', 'Admin\AdsController@edit_setting');
 Route::post('/update-setting', 'Admin\AdsController@update_setting');
 
+Route::get('/dashboard-info', 'Admin\AdsController@dashboard_info');
+
 
 
 Route::get('/{path}', function () {

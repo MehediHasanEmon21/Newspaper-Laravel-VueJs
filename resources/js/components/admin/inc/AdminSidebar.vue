@@ -46,74 +46,32 @@
 
           <li class="nav-item has-treeview">
             <router-link :to="{ name: 'BreakingPost' }" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-business-time"></i>
               <p>Breaking News</p>
             </router-link>
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="javascript:void()" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Category
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <router-link :to="{ name: 'CategoryAdd' }" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Category</p>
-                </router-link>
-                <router-link :to="{ name: 'CategoryList' }" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All Category</p>
-                </router-link>
-              </li>
-            </ul>
+            <router-link :to="{ name: 'CategoryList' }" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>Category</p>
+            </router-link>
           </li>
+
           <li class="nav-item has-treeview">
-            <a href="javascript:void()" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                News
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <router-link :to="{ name: 'PostAdd' }" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add News</p>
-                </router-link>
-                <router-link :to="{ name: 'PostList' }" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All News</p>
-                </router-link>
-              </li>
-            </ul>
+            <router-link :to="{ name: 'PostList' }" class="nav-link">
+              <i class="nav-icon fab fa-empire"></i>
+              <p>News</p>
+            </router-link>
           </li>
+
           <li class="nav-item has-treeview">
-            <a href="javascript:void()" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Advertisement
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <router-link :to="{ name: 'AddsAdd' }" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Adds</p>
-                </router-link>
-                <router-link :to="{ name: 'AddsList' }" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All Adds</p>
-                </router-link>
-              </li>
-            </ul>
+            <router-link :to="{ name: 'AddsList' }" class="nav-link">
+              <i class="nav-icon fas fa-ad"></i>
+              <p>Advertisement</p>
+            </router-link>
           </li>
+
           <li class="nav-item has-treeview">
             <router-link :to="{ name: 'CommentList' }" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -122,13 +80,13 @@
           </li>
           <li class="nav-item has-treeview">
             <router-link :to="{ name: 'UserList' }" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>Users</p>
             </router-link>
           </li>
           <li class="nav-item has-treeview">
             <router-link :to="{ name: 'SettingList' }" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-cog"></i>
               <p>Setting</p>
             </router-link>
           </li>

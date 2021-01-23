@@ -19,7 +19,6 @@ import CategoriesComponent from '../components/public/Categories.vue'
 
 const router = new VueRouter({
     mode: 'history',
-    linkActiveClass: 'active',
     routes: [
         {
             path: '/',

@@ -2,7 +2,7 @@
   <span id="home">
     <div class="main-menu-container"></div>
     <div class="container">
-      <div class="bck-news">
+      <div class="bck-news" v-if="home.breaking_post">
         <div class="col-md-2">
           <div class="brc-news">
             <h3>backing-news ::</h3>
@@ -127,7 +127,7 @@
                         class="img-responsive"
                     /></router-link>
                     <a href="javascript:void()">
-                      <h2 v-if="post.category.name">
+                      <h2 v-if="post.category">
                         {{ post.category.name }}
                       </h2>
                     </a>
@@ -163,7 +163,7 @@
                     alt="en-img1"
                     class="img-responsive"
                   />
-                  <h5 v-if="ln.category.name">{{ ln.category.name }}</h5>
+                  <h5 v-if="ln.category">{{ ln.category.name }}</h5>
                 </router-link>
                 <router-link
                   :to="{ name: 'Details', params: { slug: ln.slug } }"
@@ -173,7 +173,7 @@
                 <p v-html="ln.desc"></p>
                 <h6>
                   Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                  <a href="#" v-if="ln.admin.name">{{ ln.admin.name }}</a
+                  <a href="#" v-if="ln.admin">{{ ln.admin.name }}</a
                   ><span> | </span
                   ><i class="fa fa-clock-o" aria-hidden="true"></i>
                   {{ ln.date_fm }}
@@ -192,7 +192,7 @@
       <hr />
     </div>
 
-    <div class="container">
+    <div class="container" v-if="home.middle_ad">
       <div class="col-md-12">
         <div class="add2">
           <a href="javascript:void()"
@@ -209,7 +209,7 @@
       <div class="overlay">
         <div class="container">
           <div class="row">
-            <div class="section-padding">
+            <div class="section-padding" v-if="home.entertainment_posts">
               <div class="card-header-orange">
                 <h1 class="card-heading">
                   {{ home.entertainment_posts[0].category.name }}
@@ -243,9 +243,7 @@
                           <i class="fa fa-clock-o" aria-hidden="true"></i>
                           {{ ep.date_fm }} <span> | </span
                           ><i class="fa fa-user" aria-hidden="true"></i>
-                          <a href="#" v-if="ep.admin.name">{{
-                            ep.admin.name
-                          }}</a>
+                          <a href="#" v-if="ep.admin">{{ ep.admin.name }}</a>
                         </h5>
                         <p v-html="ep.desc"></p>
                         <router-link
@@ -270,7 +268,7 @@
 
               <div class="container">
                 <div class="row row-offcanvas row-offcanvas-right">
-                  <div class="col-xs-12 col-sm-9">
+                  <div class="col-xs-12 col-sm-9" v-if="home.sport_posts">
                     <div class="category">
                       <h1 class="category">
                         {{ home.sport_posts[0].category.name }}
@@ -292,7 +290,7 @@
                               alt="en-img1"
                               class="img-responsive"
                             />
-                            <h5 v-if="sp.category.name">
+                            <h5 v-if="sp.category">
                               {{ sp.category.name }}
                             </h5>
                           </router-link>
@@ -307,9 +305,7 @@
                               class="fa fa-user"
                               aria-hidden="true"
                             ></i>
-                            <a href="#" v-if="sp.admin.name">{{
-                              sp.admin.name
-                            }}</a
+                            <a href="#" v-if="sp.admin">{{ sp.admin.name }}</a
                             ><span> | </span
                             ><i class="fa fa-clock-o" aria-hidden="true"></i>
                             {{ sp.date_fm }}
@@ -392,7 +388,7 @@
               </div>
               <!--/.container-->
 
-              <div class="container">
+              <div class="container" v-if="home.center_ad">
                 <div class="col-md-12">
                   <div class="add2">
                     <a href="javascript:void()"
@@ -426,7 +422,7 @@
 
               <div class="container">
                 <div class="row row-offcanvas row-offcanvas-right">
-                  <div class="col-xs-12 col-sm-9">
+                  <div class="col-xs-12 col-sm-9" v-if="home.international_big">
                     <div class="category">
                       <h1 class="category">
                         {{ home.international_big.category.name }}
@@ -462,10 +458,9 @@
                               class="fa fa-user"
                               aria-hidden="true"
                             ></i>
-                            <a
-                              href="#"
-                              v-if="home.international_big.admin.name"
-                              >{{ home.international_big.admin.name }}</a
+                            <a href="#" v-if="home.international_big">{{
+                              home.international_big.admin.name
+                            }}</a
                             ><span> | </span
                             ><i class="fa fa-clock-o" aria-hidden="true"></i>
                             {{ home.international_big.date_fm }}
@@ -498,9 +493,7 @@
                               class="fa fa-user"
                               aria-hidden="true"
                             ></i>
-                            <a href="#" v-if="ip.admin.name">{{
-                              ip.admin.name
-                            }}</a
+                            <a href="#" v-if="ip.admin">{{ ip.admin.name }}</a
                             ><span> | </span
                             ><i class="fa fa-clock-o" aria-hidden="true"></i>
                             {{ ip.date_fm }}
@@ -581,7 +574,7 @@
 
               <!-- Feature Job -->
 
-              <div class="container">
+              <div class="container" v-if="home.top_bottom">
                 <div class="col-md-12">
                   <div class="add2">
                     <a :href="home.top_bottom.link" target="_blank"
@@ -599,7 +592,7 @@
 
             <div class="container">
               <div class="row row-offcanvas row-offcanvas-right">
-                <div class="col-xs-12 col-sm-12">
+                <div class="col-xs-12 col-sm-12" v-if="home.bangladesh_posts">
                   <div class="category12">
                     <h1 class="category12">
                       {{ home.bangladesh_posts[0].category.name }}
@@ -620,7 +613,7 @@
                             alt="en-img1"
                             class="img-responsive"
                           />
-                          <h5 v-if="bp.category.name">
+                          <h5 v-if="bp.category">
                             {{ bp.category.name }}
                           </h5>
                         </router-link>
@@ -632,9 +625,7 @@
                         <p v-html="bp.desc"></p>
                         <h6>
                           Posted by<i class="fa fa-user" aria-hidden="true"></i>
-                          <a href="#" v-if="bp.admin.name">{{
-                            bp.admin.name
-                          }}</a
+                          <a href="#" v-if="bp.admin">{{ bp.admin.name }}</a
                           ><span> | </span
                           ><i class="fa fa-clock-o" aria-hidden="true"></i>
                           {{ bp.date_fm }}

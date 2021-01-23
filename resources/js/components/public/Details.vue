@@ -3,7 +3,7 @@
     <section id="slide">
       <div class="s-bg slide">
         <div class="container">
-          <h2>blog details content</h2>
+          <h2>details content</h2>
         </div>
       </div>
       <!-- /.sbg -->
@@ -27,7 +27,7 @@
       <div class="blogg">
         <div class="container">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8" v-if="single.post">
               <div class="blog">
                 <img :src="`/uploads/post/${single.post.image}`" alt="image" />
               </div>
@@ -40,7 +40,7 @@
                   <h3>{{ single.post.title }}</h3>
                   <p class="content">
                     by
-                    <a href="#" class="admin" v-if="single.post.admin.name">{{
+                    <a href="#" class="admin" v-if="single.post">{{
                       single.post.admin.name
                     }}</a>
                     <span>|</span>
@@ -219,7 +219,7 @@
                           >{{ ln.title.slice(0, 20) }}...</router-link
                         >
                       </h4>
-                      <p v-if="ln.category.name">
+                      <p v-if="ln.category">
                         {{ ln.category.name }} - {{ ln.date_fm }}
                       </p>
                     </div>

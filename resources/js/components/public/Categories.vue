@@ -3,7 +3,7 @@
     <section id="slide">
       <div class="s-bg slide">
         <div class="container">
-          <h2 v-if="posts.category_posts.data[0].category.name">
+          <h2 v-if="posts.category_posts">
             {{ posts.category_posts.data[0].category.name }} content
           </h2>
         </div>
@@ -27,7 +27,7 @@
       <div class="blogg">
         <div class="container">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8" v-if="posts.category_posts">
               <div
                 class="blog"
                 v-for="post in posts.category_posts.data"
@@ -48,7 +48,7 @@
                     </h3>
                     <p class="content">
                       by
-                      <a href="#" class="admin" v-if="post.admin.name">{{
+                      <a href="#" class="admin" v-if="post.admin">{{
                         post.admin.name
                       }}</a>
                       <span>|</span>
@@ -101,7 +101,7 @@
                           >{{ ln.title.slice(0, 20) }}...</router-link
                         >
                       </h4>
-                      <p v-if="ln.category.name">
+                      <p v-if="ln.category">
                         {{ ln.category.name }} - {{ ln.date_fm }}
                       </p>
                     </div>

@@ -31,16 +31,18 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{ dashboard.category }}</h3>
 
-                <p>New Orders</p>
+                <p>Category</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer"
+              <router-link
+                :to="{ name: 'CategoryList' }"
+                class="small-box-footer"
                 >More info <i class="fas fa-arrow-circle-right"></i
-              ></a>
+              ></router-link>
             </div>
           </div>
           <!-- ./col -->
@@ -48,16 +50,18 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>
+                  {{ dashboard.post }}
+                </h3>
 
-                <p>Bounce Rate</p>
+                <p>News</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer"
+              <router-link :to="{ name: 'PostList' }" class="small-box-footer"
                 >More info <i class="fas fa-arrow-circle-right"></i
-              ></a>
+              ></router-link>
             </div>
           </div>
           <!-- ./col -->
@@ -65,16 +69,16 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{ dashboard.user }}</h3>
 
-                <p>User Registrations</p>
+                <p>User</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer"
+              <router-link :to="{ name: 'UserList' }" class="small-box-footer"
                 >More info <i class="fas fa-arrow-circle-right"></i
-              ></a>
+              ></router-link>
             </div>
           </div>
           <!-- ./col -->
@@ -82,16 +86,34 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{ dashboard.ad }}</h3>
 
-                <p>Unique Visitors</p>
+                <p>Ads</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer"
+              <router-link :to="{ name: 'AddsList' }" class="small-box-footer"
                 >More info <i class="fas fa-arrow-circle-right"></i
-              ></a>
+              ></router-link>
+            </div>
+          </div>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{ dashboard.comment }}</h3>
+
+                <p>Comment</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <router-link
+                :to="{ name: 'CommentList' }"
+                class="small-box-footer"
+                >More info <i class="fas fa-arrow-circle-right"></i
+              ></router-link>
             </div>
           </div>
           <!-- ./col -->
@@ -111,6 +133,19 @@
 <script>
 export default {
   name: "AdminDashboard",
+  data() {
+    return {
+      dashboard: {},
+    };
+  },
+  created() {
+    axios
+      .get("/admin/dashboard-info")
+      .then((result) => {
+        this.dashboard = result.data;
+      })
+      .catch((err) => {});
+  },
 };
 </script>
 

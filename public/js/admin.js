@@ -2018,8 +2018,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "AdminDashboard"
+  name: "AdminDashboard",
+  data: function data() {
+    return {
+      dashboard: {}
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get("/admin/dashboard-info").then(function (result) {
+      _this.dashboard = result.data;
+    })["catch"](function (err) {});
+  }
 });
 
 /***/ }),
@@ -3478,9 +3512,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CategoryList",
@@ -3793,48 +3824,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -4501,9 +4490,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inc_PaginationComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../inc/PaginationComponent */ "./resources/js/components/admin/inc/PaginationComponent.vue");
-//
-//
-//
 //
 //
 //
@@ -57884,138 +57870,232 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "content-wrapper" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "content" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-lg-3 col-6" }, [
+            _c(
+              "div",
+              { staticClass: "small-box bg-info" },
+              [
+                _c("div", { staticClass: "inner" }, [
+                  _c("h3", [_vm._v(_vm._s(_vm.dashboard.category))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Category")])
+                ]),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "small-box-footer",
+                    attrs: { to: { name: "CategoryList" } }
+                  },
+                  [
+                    _vm._v("More info "),
+                    _c("i", { staticClass: "fas fa-arrow-circle-right" })
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-3 col-6" }, [
+            _c(
+              "div",
+              { staticClass: "small-box bg-success" },
+              [
+                _c("div", { staticClass: "inner" }, [
+                  _c("h3", [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.dashboard.post) +
+                        "\n              "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("News")])
+                ]),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "small-box-footer",
+                    attrs: { to: { name: "PostList" } }
+                  },
+                  [
+                    _vm._v("More info "),
+                    _c("i", { staticClass: "fas fa-arrow-circle-right" })
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-3 col-6" }, [
+            _c(
+              "div",
+              { staticClass: "small-box bg-warning" },
+              [
+                _c("div", { staticClass: "inner" }, [
+                  _c("h3", [_vm._v(_vm._s(_vm.dashboard.user))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("User")])
+                ]),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "small-box-footer",
+                    attrs: { to: { name: "UserList" } }
+                  },
+                  [
+                    _vm._v("More info "),
+                    _c("i", { staticClass: "fas fa-arrow-circle-right" })
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-3 col-6" }, [
+            _c(
+              "div",
+              { staticClass: "small-box bg-danger" },
+              [
+                _c("div", { staticClass: "inner" }, [
+                  _c("h3", [_vm._v(_vm._s(_vm.dashboard.ad))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Ads")])
+                ]),
+                _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "small-box-footer",
+                    attrs: { to: { name: "AddsList" } }
+                  },
+                  [
+                    _vm._v("More info "),
+                    _c("i", { staticClass: "fas fa-arrow-circle-right" })
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-3 col-6" }, [
+            _c(
+              "div",
+              { staticClass: "small-box bg-warning" },
+              [
+                _c("div", { staticClass: "inner" }, [
+                  _c("h3", [_vm._v(_vm._s(_vm.dashboard.comment))]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Comment")])
+                ]),
+                _vm._v(" "),
+                _vm._m(5),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "small-box-footer",
+                    attrs: { to: { name: "CommentList" } }
+                  },
+                  [
+                    _vm._v("More info "),
+                    _c("i", { staticClass: "fas fa-arrow-circle-right" })
+                  ]
+                )
+              ],
+              1
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content-wrapper" }, [
-      _c("div", { staticClass: "content-header" }, [
-        _c("div", { staticClass: "container-fluid" }, [
-          _c("div", { staticClass: "row mb-2" }, [
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c("h1", { staticClass: "m-0 text-dark" }, [_vm._v("Dashboard")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-sm-6" }, [
-              _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
-                _c("li", { staticClass: "breadcrumb-item" }, [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "breadcrumb-item active" }, [
-                  _vm._v("Dashboard v1")
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "content" }, [
-        _c("div", { staticClass: "container-fluid" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-3 col-6" }, [
-              _c("div", { staticClass: "small-box bg-info" }, [
-                _c("div", { staticClass: "inner" }, [
-                  _c("h3", [_vm._v("150")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("New Orders")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "icon" }, [
-                  _c("i", { staticClass: "ion ion-bag" })
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "small-box-footer", attrs: { href: "#" } },
-                  [
-                    _vm._v("More info "),
-                    _c("i", { staticClass: "fas fa-arrow-circle-right" })
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-3 col-6" }, [
-              _c("div", { staticClass: "small-box bg-success" }, [
-                _c("div", { staticClass: "inner" }, [
-                  _c("h3", [
-                    _vm._v("53"),
-                    _c("sup", { staticStyle: { "font-size": "20px" } }, [
-                      _vm._v("%")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("Bounce Rate")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "icon" }, [
-                  _c("i", { staticClass: "ion ion-stats-bars" })
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "small-box-footer", attrs: { href: "#" } },
-                  [
-                    _vm._v("More info "),
-                    _c("i", { staticClass: "fas fa-arrow-circle-right" })
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-3 col-6" }, [
-              _c("div", { staticClass: "small-box bg-warning" }, [
-                _c("div", { staticClass: "inner" }, [
-                  _c("h3", [_vm._v("44")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("User Registrations")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "icon" }, [
-                  _c("i", { staticClass: "ion ion-person-add" })
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "small-box-footer", attrs: { href: "#" } },
-                  [
-                    _vm._v("More info "),
-                    _c("i", { staticClass: "fas fa-arrow-circle-right" })
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-3 col-6" }, [
-              _c("div", { staticClass: "small-box bg-danger" }, [
-                _c("div", { staticClass: "inner" }, [
-                  _c("h3", [_vm._v("65")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v("Unique Visitors")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "icon" }, [
-                  _c("i", { staticClass: "ion ion-pie-graph" })
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "small-box-footer", attrs: { href: "#" } },
-                  [
-                    _vm._v("More info "),
-                    _c("i", { staticClass: "fas fa-arrow-circle-right" })
-                  ]
-                )
+    return _c("div", { staticClass: "content-header" }, [
+      _c("div", { staticClass: "container-fluid" }, [
+        _c("div", { staticClass: "row mb-2" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("h1", { staticClass: "m-0 text-dark" }, [_vm._v("Dashboard")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c("ol", { staticClass: "breadcrumb float-sm-right" }, [
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Home")])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item active" }, [
+                _vm._v("Dashboard v1")
               ])
             ])
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icon" }, [
+      _c("i", { staticClass: "ion ion-bag" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icon" }, [
+      _c("i", { staticClass: "ion ion-stats-bars" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icon" }, [
+      _c("i", { staticClass: "ion ion-person-add" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icon" }, [
+      _c("i", { staticClass: "ion ion-pie-graph" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "icon" }, [
+      _c("i", { staticClass: "ion ion-person-add" })
     ])
   }
 ]
@@ -60121,9 +60201,7 @@ var render = function() {
                             _vm._v("\n                  Add "),
                             _c("i", { staticClass: "fas fa-plus" })
                           ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(1)
+                        )
                       ],
                       1
                     )
@@ -60131,7 +60209,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
                     _c("table", { staticClass: "table table-bordered" }, [
-                      _vm._m(2),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -60229,15 +60307,6 @@ var staticRenderFns = [
           ])
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "btn btn-primary" }, [
-      _vm._v("\n                  Reload "),
-      _c("i", { staticClass: "fas fa-sync" })
     ])
   },
   function() {
@@ -60744,9 +60813,7 @@ var render = function() {
                       attrs: { to: { name: "BreakingPost" } }
                     },
                     [
-                      _c("i", {
-                        staticClass: "nav-icon fas fa-tachometer-alt"
-                      }),
+                      _c("i", { staticClass: "nav-icon fas fa-business-time" }),
                       _vm._v(" "),
                       _c("p", [_vm._v("Breaking News")])
                     ]
@@ -60755,122 +60822,65 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("li", { staticClass: "nav-item has-treeview" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("ul", { staticClass: "nav nav-treeview" }, [
+              _c(
+                "li",
+                { staticClass: "nav-item has-treeview" },
+                [
                   _c(
-                    "li",
-                    { staticClass: "nav-item" },
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "CategoryList" } }
+                    },
                     [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "CategoryAdd" } }
-                        },
-                        [
-                          _c("i", { staticClass: "far fa-circle nav-icon" }),
-                          _vm._v(" "),
-                          _c("p", [_vm._v("Add Category")])
-                        ]
-                      ),
+                      _c("i", { staticClass: "nav-icon fas fa-copy" }),
                       _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "CategoryList" } }
-                        },
-                        [
-                          _c("i", { staticClass: "far fa-circle nav-icon" }),
-                          _vm._v(" "),
-                          _c("p", [_vm._v("All Category")])
-                        ]
-                      )
-                    ],
-                    1
+                      _c("p", [_vm._v("Category")])
+                    ]
                   )
-                ])
-              ]),
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("li", { staticClass: "nav-item has-treeview" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("ul", { staticClass: "nav nav-treeview" }, [
+              _c(
+                "li",
+                { staticClass: "nav-item has-treeview" },
+                [
                   _c(
-                    "li",
-                    { staticClass: "nav-item" },
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "PostList" } }
+                    },
                     [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "PostAdd" } }
-                        },
-                        [
-                          _c("i", { staticClass: "far fa-circle nav-icon" }),
-                          _vm._v(" "),
-                          _c("p", [_vm._v("Add News")])
-                        ]
-                      ),
+                      _c("i", { staticClass: "nav-icon fab fa-empire" }),
                       _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "PostList" } }
-                        },
-                        [
-                          _c("i", { staticClass: "far fa-circle nav-icon" }),
-                          _vm._v(" "),
-                          _c("p", [_vm._v("All News")])
-                        ]
-                      )
-                    ],
-                    1
+                      _c("p", [_vm._v("News")])
+                    ]
                   )
-                ])
-              ]),
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("li", { staticClass: "nav-item has-treeview" }, [
-                _vm._m(3),
-                _vm._v(" "),
-                _c("ul", { staticClass: "nav nav-treeview" }, [
+              _c(
+                "li",
+                { staticClass: "nav-item has-treeview" },
+                [
                   _c(
-                    "li",
-                    { staticClass: "nav-item" },
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "AddsList" } }
+                    },
                     [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "AddsAdd" } }
-                        },
-                        [
-                          _c("i", { staticClass: "far fa-circle nav-icon" }),
-                          _vm._v(" "),
-                          _c("p", [_vm._v("Add Adds")])
-                        ]
-                      ),
+                      _c("i", { staticClass: "nav-icon fas fa-ad" }),
                       _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { to: { name: "AddsList" } }
-                        },
-                        [
-                          _c("i", { staticClass: "far fa-circle nav-icon" }),
-                          _vm._v(" "),
-                          _c("p", [_vm._v("All Adds")])
-                        ]
-                      )
-                    ],
-                    1
+                      _c("p", [_vm._v("Advertisement")])
+                    ]
                   )
-                ])
-              ]),
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "li",
@@ -60905,9 +60915,7 @@ var render = function() {
                       attrs: { to: { name: "UserList" } }
                     },
                     [
-                      _c("i", {
-                        staticClass: "nav-icon fas fa-tachometer-alt"
-                      }),
+                      _c("i", { staticClass: "nav-icon fas fa-user" }),
                       _vm._v(" "),
                       _c("p", [_vm._v("Users")])
                     ]
@@ -60927,9 +60935,7 @@ var render = function() {
                       attrs: { to: { name: "SettingList" } }
                     },
                     [
-                      _c("i", {
-                        staticClass: "nav-icon fas fa-tachometer-alt"
-                      }),
+                      _c("i", { staticClass: "nav-icon fas fa-cog" }),
                       _vm._v(" "),
                       _c("p", [_vm._v("Setting")])
                     ]
@@ -60956,57 +60962,6 @@ var staticRenderFns = [
         attrs: { src: "/admin/images/default_avatar.png", alt: "User Image" }
       })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "nav-link", attrs: { href: "javascript:void()" } },
-      [
-        _c("i", { staticClass: "nav-icon fas fa-chart-pie" }),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("\n              Category\n              "),
-          _c("i", { staticClass: "right fas fa-angle-left" })
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "nav-link", attrs: { href: "javascript:void()" } },
-      [
-        _c("i", { staticClass: "nav-icon fas fa-chart-pie" }),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("\n              News\n              "),
-          _c("i", { staticClass: "right fas fa-angle-left" })
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "nav-link", attrs: { href: "javascript:void()" } },
-      [
-        _c("i", { staticClass: "nav-icon fas fa-chart-pie" }),
-        _vm._v(" "),
-        _c("p", [
-          _vm._v("\n              Advertisement\n              "),
-          _c("i", { staticClass: "right fas fa-angle-left" })
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -61844,19 +61799,15 @@ var render = function() {
                             _vm._v("\n                  Add "),
                             _c("i", { staticClass: "fas fa-plus" })
                           ]
-                        ),
-                        _vm._v(" "),
-                        _vm._m(1)
+                        )
                       ],
                       1
                     )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _vm._m(2),
-                    _vm._v(" "),
                     _c("table", { staticClass: "table table-bordered" }, [
-                      _vm._m(3),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -61962,42 +61913,6 @@ var staticRenderFns = [
               ])
             ])
           ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "btn btn-primary" }, [
-      _vm._v("\n                  Reload "),
-      _c("i", { staticClass: "fas fa-sync" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-2" }, [
-          _c("strong", [_vm._v("Search By")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-3" }, [
-          _c("select", { staticClass: "form-control form-control-sm" }, [
-            _c("option", { attrs: { value: "title" } }, [_vm._v("Title")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "slug" } }, [_vm._v("Slug")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-7" }, [
-          _c("input", {
-            staticClass: "form-control form-control-sm",
-            attrs: { type: "text" }
-          })
         ])
       ])
     ])

@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use App\Model\Post;
 use App\Model\Comment;
+use App\Model\Setting;
+use App\Model\Category;
+use App\Model\BreakingPost;
 use App\Model\Advertisement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Model\BreakingPost;
-use App\Model\Setting;
 
 class AdsController extends Controller
 {
@@ -202,5 +204,22 @@ class AdsController extends Controller
         $setting->mobile = $request->mobile;
         $setting->address = $request->address;
         $setting->save();
+    }
+
+    public function dashboard_info()
+    {
+        $user = User::get()->count();
+        $ad = Advertisement::get()->count();
+        $category = Category::get()->count();
+        $post = Post::get()->count();
+        $comment = Comment::get()->count();
+
+        return response()->json([
+            'user' => $user,
+            'ad' => $ad,
+            'category' => $category,
+            'comment' => $comment,
+            'post' => $post,
+        ]);
     }
 }

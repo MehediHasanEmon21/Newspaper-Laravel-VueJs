@@ -32,9 +32,6 @@
                   >
                     Add <i class="fas fa-plus"></i>
                   </router-link>
-                  <button class="btn btn-primary">
-                    Reload <i class="fas fa-sync"></i>
-                  </button>
                 </div>
               </div>
               <!-- /.card-header -->
